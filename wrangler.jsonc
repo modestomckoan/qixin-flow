@@ -1,0 +1,8 @@
+{
+  "name": "qixin-community",
+  "main": "dist/server/index.js",
+  "compatibility_date": "2026-10-21",
+  "vars": {
+    "AI_PROVIDER": "deepseek"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "qixin-community-complete",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/preview.mjs"
+  }
+}
