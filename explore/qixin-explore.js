@@ -205,4 +205,22 @@
   if(localStorage.getItem('calm_onboarded')==='1'){
     _qxWait().then(()=>window.enterApp());
   }
+
+  /* ---------- 移除 roost「小栖」🍃 悬浮球（遮挡底部首页导航，且为 emoji） ---------- */
+  function qxRemoveXiaoxi(){
+    const isFloat=el=>{
+      if(!el||el.tagName!=='DIV') return false;
+      const cs=getComputedStyle(el);
+      return cs.position==='fixed' && (el.textContent||'').trim()==='🍃';
+    };
+    document.querySelectorAll('body > div').forEach(el=>{ if(isFloat(el)) el.remove(); });
+  }
+  qxRemoveXiaoxi();
+  new MutationObserver(muts=>{
+    for(const m of muts){
+      m.addedNodes.forEach(n=>{
+        if(n.nodeType===1 && n.tagName==='DIV' && getComputedStyle(n).position==='fixed' && (n.textContent||'').trim()==='🍃'){ n.remove(); }
+      });
+    }
+  }).observe(document.body,{childList:true});
 })();
