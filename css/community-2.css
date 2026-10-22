@@ -1,0 +1,475 @@
+.post-cover.checkin {
+background:linear-gradient(145deg,#eceddd,#d1ddbe);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:20px;
+text-align:center
+}
+
+.post-cover.checkin.sand {
+background:linear-gradient(145deg,#f2ecd9,#d6dbc2)
+}
+
+.checkin-number {
+font:65px Georgia;
+color:#77905c;
+margin:12px 0 4px
+}
+
+.checkin-number span {
+font:9px sans-serif;
+letter-spacing:1px;
+margin-left:6px
+}
+
+.checkin-cover-line {
+font:16px "Songti SC",serif;
+color:#71845b;
+letter-spacing:1px
+}
+
+.checkin-sticker {
+margin-top:18px;
+font-size:8px;
+letter-spacing:1px;
+color:#9aab83
+}
+
+.community-end {
+text-align:center;
+font:15px "Songti SC",serif;
+letter-spacing:1px;
+color:#9aab86;
+padding:23px 0 12px
+}
+
+.community-end span {
+display:block;
+font-size:9px;
+margin-top:12px;
+letter-spacing:1px;
+color:#acb79b
+}
+
+.community-aside {
+align-self:start;
+position:sticky;
+top:22px
+}
+
+.checkin-widget {
+background:#f9faeea6;
+border:1px solid #fff;
+border-radius:22px;
+padding:23px
+}
+
+.widget-kicker {
+font-size:7px;
+letter-spacing:1.6px;
+color:#8e9f7a;
+display:flex;
+justify-content:space-between;
+align-items:center
+}
+
+.widget-kicker span {
+font-size:20px;
+color:#9cb180
+}
+
+.checkin-widget h3 {
+font:21px/1.6 "Songti SC",serif;
+margin:13px 0 9px
+}
+
+.checkin-widget p {
+font-size:10px;
+line-height:1.9;
+color:#8a9d77
+}
+
+.week-dots {
+display:flex;
+justify-content:space-between;
+gap:4px;
+margin:22px 0
+}
+
+.week-dots>span {
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:8px;
+color:#a7b398
+}
+
+.week-dots i {
+width:22px;
+height:22px;
+border-radius:50%;
+border:1px solid #dbe3cf;
+font-size:8px;
+font-style:normal;
+display:grid;
+place-items:center
+}
+
+.week-dots .today i {
+border-color:#9cb083;
+color:#82996b;
+background:#e9f0db
+}
+
+.week-dots .checked i {
+background:#718c58;
+color:#fff
+}
+
+.week-dots small {
+font-size:7px
+}
+
+.checkin-widget .primary {
+width:100%;
+font-size:10px;
+padding:12px 10px
+}
+
+.checkin-widget>small {
+display:block;
+font-size:8px;
+color:#a5b392;
+text-align:center;
+margin-top:13px;
+line-height:1.9
+}
+
+.topic-widget {
+padding:26px 6px 17px
+}
+
+.widget-title {
+font-size:13px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:18px;
+color:#637d50
+}
+
+.widget-title>span {
+font-size:11px;
+color:#91a479
+}
+
+.topic-widget>button {
+width:100%;
+display:flex;
+align-items:center;
+gap:12px;
+background:none;
+text-align:left;
+padding:11px 0;
+border-bottom:1px solid #d3ddc555
+}
+
+.topic-number {
+font:italic 16px Georgia;
+color:#a0b184
+}
+
+.topic-widget b {
+font-size:11px;
+font-weight:400;
+color:#72865d;
+display:block
+}
+
+.topic-widget small {
+font-size:8px;
+color:#a3b091;
+display:block;
+margin-top:7px
+}
+
+.topic-widget>button>span:last-child {
+margin-left:auto;
+color:#a2b48a;
+font-size:19px
+}
+
+.community-guidelines {
+border-top:1px solid #c8d6b677;
+padding:20px 7px
+}
+
+.community-guidelines>span {
+font-size:30px;
+color:#93a87a
+}
+
+.community-guidelines h4 {
+font:15px "Songti SC",serif;
+margin:9px 0 12px;
+color:#80956b
+}
+
+.community-guidelines p {
+font-size:9px;
+color:#9aab88;
+line-height:1.9
+}
+
+.community-guidelines .link-btn {
+font-size:9px;
+color:#8ca178;
+margin-top:6px
+}
+
+.preview-aside-note {
+font-size:8px;
+line-height:2;
+color:#a6b397;
+padding:0 7px;
+max-width:240px
+}
+
+.community-fab {
+display:none
+}
+
+.community-empty {
+column-span:all;
+text-align:center;
+padding:55px 25px;
+border:1px dashed #c3d2af;
+border-radius:20px
+}
+
+.community-empty>span {
+font-size:38px;
+color:#a6b78f
+}
+
+.community-empty h3 {
+font:20px/1.8 "Songti SC",serif;
+font-weight:400;
+color:#82996d;
+margin:15px 0 10px
+}
+
+.community-empty p {
+font-size:11px;
+line-height:1.9;
+color:#9aaa87
+}
+
+.community-empty .pill-btn {
+margin-top:10px
+}
+
+.community-detail-modal {
+width:780px;
+padding:30px 34px
+}
+
+.detail-author {
+display:flex;
+align-items:center;
+gap:11px;
+margin-bottom:20px;
+padding-right:20px
+}
+
+.detail-author>div {
+flex:1
+}
+
+.detail-author b {
+font-size:12px;
+font-weight:500
+}
+
+.detail-author small {
+display:block;
+font-size:9px;
+color:#9aaa88;
+margin-top:7px
+}
+
+.detail-follow {
+border:1px solid #d0ddbf;
+color:#78975b;
+font-size:10px;
+padding:8px 16px;
+border-radius:23px;
+background:#edf2e0
+}
+
+.detail-follow.following {
+background:#dce8cc;
+color:#6b8753
+}
+
+.detail-image {
+height:330px;
+border-radius:18px;
+background-size:cover;
+background-position:center
+}
+
+.community-detail h2 {
+font:25px/1.7 "Songti SC",serif;
+margin:23px 0 15px
+}
+
+.detail-body {
+white-space:pre-wrap;
+font-size:13px;
+line-height:2.1;
+color:#7b8e6b;
+overflow-wrap:anywhere
+}
+
+.detail-topic {
+margin:17px 0;
+display:block;
+padding:0
+}
+
+.detail-actions {
+display:flex;
+gap:12px;
+padding:16px 0;
+border-top:1px solid #d9e3cc;
+border-bottom:1px solid #d9e3cc
+}
+
+.detail-actions button {
+background:#e9efde;
+border:1px solid #dce6cf;
+border-radius:25px;
+padding:9px 14px;
+font-size:11px;
+color:#80956b
+}
+
+.detail-actions button:last-child {
+margin-left:auto
+}
+
+.comments-heading {
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:22px 0
+}
+
+.comments-heading h3 {
+font-size:13px;
+font-weight:400;
+margin:0
+}
+
+.comments-heading>span {
+font-size:10px;
+color:#a2b18e
+}
+
+.comment-row {
+display:flex;
+align-items:flex-start;
+gap:12px;
+padding:10px 0
+}
+
+.comment-avatar {
+width:26px;
+height:26px;
+border-radius:50%;
+background:#e3ebd5;
+display:grid;
+place-items:center;
+font:12px "Songti SC",serif;
+color:#92a47a;
+flex-shrink:0
+}
+
+.comment-row b {
+font-size:10px;
+color:#8ea175;
+font-weight:400
+}
+
+.comment-row p {
+font-size:12px;
+color:#7f936b;
+line-height:1.9;
+margin:5px 0;
+overflow-wrap:anywhere
+}
+
+.comments-empty {
+font-size:11px;
+color:#a2b18e;
+padding:20px 0
+}
+
+.comment-form {
+display:flex;
+gap:10px;
+margin-top:20px;
+align-items:center
+}
+
+.comment-form input {
+border-radius:25px!important;
+font-size:11px;
+flex:1;
+min-width:0
+}
+
+.comment-form button {
+border-radius:25px;
+padding:11px 18px;
+background:#657f51;
+color:#fff;
+font-size:10px;
+flex-shrink:0
+}
+
+.local-preview-note {
+font-size:9px!important;
+line-height:1.8!important;
+color:#a6b593!important;
+margin-top:14px!important
+}
+
+.detail-quote {
+border-radius:18px;
+background:linear-gradient(140deg,#eef1e2,#d6e3c4);
+min-height:260px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+white-space:pre-line;
+text-align:center;
+font:29px/1.9 "Songti SC",serif;
+color:#7a9460
+}
+
+.detail-quote b {
+font:80px Georgia
+}
+
+.detail-quote small {
+font:12px sans-serif
+}
+
+.detail-quote>span {
+font-size:21px
+}

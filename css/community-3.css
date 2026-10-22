@@ -1,0 +1,233 @@
+.community-profile-card {
+text-align:center;
+padding-top:12px
+}
+
+.community-profile-card>.community-avatar {
+width:70px;
+height:70px;
+font-size:29px
+}
+
+.community-profile-card h2 {
+margin-top:20px
+}
+
+.community-profile-card .status {
+display:inline-block;
+font-size:9px
+}
+
+.profile-posts {
+margin-top:20px
+}
+
+.profile-posts>button {
+width:100%;
+text-align:left;
+display:flex;
+justify-content:space-between;
+gap:18px;
+border-bottom:1px solid #d8e2ca;
+background:none;
+padding:16px 0;
+font-size:12px;
+line-height:1.8
+}
+
+.profile-posts>button>span {
+color:#a2b48a
+}
+
+.profile-posts>p {
+font-size:11px
+}
+
+.preview-list-title {
+font-size:13px;
+font-weight:400;
+margin:25px 0 0;
+color:#7e9667
+}
+
+.community-mini-stats {
+display:flex;
+justify-content:space-around;
+border-bottom:1px solid #dbe5ce;
+padding:18px 0 24px
+}
+
+.community-mini-stats>span {
+font-size:10px;
+color:#93a67d;
+text-align:center
+}
+
+.community-mini-stats b {
+display:block;
+font:28px Georgia;
+color:#728c59;
+margin-bottom:10px
+}
+
+.cover-picker {
+display:flex;
+gap:9px
+}
+
+.pick-cover,.upload-cover {
+width:calc((100% - 36px)/5);
+height:68px;
+border-radius:9px;
+background-size:cover;
+background-position:center;
+border:2px solid transparent
+}
+
+.pick-cover.selected {
+outline:2px solid #8da76d;
+outline-offset:2px
+}
+
+.upload-cover {
+display:grid!important;
+place-items:center!important;
+background-color:#e9efdd;
+color:#9eb489;
+font-size:22px!important;
+margin:0!important;
+cursor:pointer
+}
+
+.upload-cover.has-image {
+color:transparent
+}
+
+.community-aside .primary:hover,.compose-desktop:hover {
+transform:translateY(-1px)
+}
+
+@media(min-width:1450px) {
+.shell {
+  max-width:1370px
+  }
+.community-layout {
+  grid-template-columns:minmax(0,1fr) 270px;
+  gap:32px
+  }
+.community-feed {
+  column-count:3;
+  column-gap:18px
+  }
+.community-topline {
+  margin-top:42px
+  }
+.community-banner {
+  min-height:240px
+  }
+.community-banner h2 {
+  font-size:30px
+  }
+.banner-copy {
+  width:65%
+  }
+.banner-photo {
+  width:29%
+  }
+}
+
+@media(max-width:950px) {
+.community-layout {
+  grid-template-columns:minmax(0,1fr) 215px;
+  gap:20px
+  }
+.community-banner {
+  padding:23px
+  }
+.community-banner h2 {
+  font-size:24px
+  }
+.community-banner p {
+  font-size:9px
+  }
+.banner-photo {
+  right:15px;
+  width:30%;
+  border-width:4px
+  }
+.banner-flower {
+  font-size:35px;
+  right:27%
+  }
+.community-feed {
+  column-gap:13px
+  }
+.post-content {
+  padding:12px
+  }
+.post-content h3 {
+  font-size:12px
+  }
+.post-cover.tall {
+  height:230px
+  }
+.post-cover.medium {
+  height:200px
+  }
+.post-cover.short {
+  height:180px
+  }
+.community-feed-tabs {
+  gap:18px
+  }
+.community-feed-tabs button {
+  font-size:12px
+  }
+.community-search {
+  width:170px
+  }
+.checkin-widget {
+  padding:18px
+  }
+.checkin-widget h3 {
+  font-size:18px
+  }
+.week-dots i {
+  width:19px;
+  height:19px
+  }
+.cover-quote {
+  font-size:19px
+  }
+}
+
+@media(max-width:760px) {
+.community-aside {
+  display:none
+  }
+.community-topline h1 {
+  font-size:27px
+  }
+.community-layout {
+  display:block
+  }
+.community-banner {
+  min-height:230px
+  }
+.post-cover.tall {
+  height:285px
+  }
+.post-cover.medium {
+  height:240px
+  }
+.post-cover.short {
+  height:210px
+  }
+.compose-desktop {
+  font-size:10px;
+  padding:12px 16px
+  }
+.community-topline p {
+  font-size:10px
+  }
+}
