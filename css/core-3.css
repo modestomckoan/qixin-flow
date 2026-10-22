@@ -1,0 +1,460 @@
+.progress {
+width:100%;
+accent-color:#eff3dc;
+height:3px;
+margin-top:15px
+}
+
+.player-time {
+display:flex;
+justify-content:space-between;
+font-size:10px;
+color:#ffffffa6;
+margin-top:12px
+}
+
+.playback {
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:30px 0
+}
+
+.playback button {
+background:none;
+color:#fffce9;
+font-size:25px
+}
+
+.playback .big-play {
+width:78px;
+height:78px;
+border-radius:50%;
+background:#fffef4;
+color:#374b2e;
+font-size:25px
+}
+
+.playback small {
+display:block;
+font-size:8px
+}
+
+.player-extra {
+display:flex;
+justify-content:center;
+gap:12px
+}
+
+.player-extra button {
+border:1px solid #fff4;
+background:#fff2;
+color:#fffce9;
+padding:11px 23px;
+border-radius:30px;
+font-size:11px
+}
+
+.toast {
+position:fixed;
+bottom:105px;
+left:50%;
+transform:translateX(-50%);
+background:#3c5635;
+color:#fffde9;
+z-index:40;
+border-radius:30px;
+padding:12px 23px;
+display:none;
+font-size:12px;
+max-width:90vw;
+text-align:center
+}
+
+.service-note {
+max-width:650px;
+margin:25px auto 0;
+text-align:center;
+font-size:10px;
+line-height:1.9;
+color:#8a987c
+}
+
+.generation-spinner {
+display:inline-block;
+border:1px solid #fff6;
+border-top-color:#fff;
+border-radius:50%;
+width:13px;
+height:13px;
+animation:spin 1s linear infinite;
+margin-right:8px;
+vertical-align:middle
+}
+
+@keyframes spin {
+to {
+  transform:rotate(360deg)
+  }
+}
+
+@media(min-width:1400px) {
+.shell {
+  padding-top:42px
+  }
+.hero {
+  padding-top:42px
+  }
+.cover {
+  height:280px
+  }
+}
+
+@media(max-width:850px) {
+.shell {
+  padding:25px 27px 190px
+  }
+.cover {
+  height:235px
+  }
+.cards {
+  gap:15px
+  }
+.cover-text {
+  left:18px;
+  right:18px
+  }
+.cover-text h3 {
+  font-size:18px
+  }
+.daily {
+  gap:15px
+  }
+.affirm-panel {
+  padding:25px 22px
+  }
+.affirm-panel blockquote {
+  font-size:21px
+  }
+.breath-panel {
+  padding:24px 22px
+  }
+.breath-orb {
+  width:64px;
+  height:64px;
+  margin-right:4px
+  }
+.section-head h2 small {
+  display:none
+  }
+}
+
+@media(max-width:600px) {
+.shell {
+  padding:24px 22px 190px;
+  overflow:hidden
+  }
+.brand {
+  font-size:29px
+  }
+.brand em {
+  font-size:18px
+  }
+.header-right {
+  gap:8px
+  }
+.voice-pill {
+  height:37px;
+  padding:0 12px;
+  font-size:10px
+  }
+.round {
+  width:37px;
+  height:37px;
+  font-size:17px
+  }
+.header-right .history-btn {
+  display:none
+  }
+.hero {
+  padding:35px 0 19px
+  }
+.portal {
+  width:104px;
+  height:104px
+  }
+h1 {
+  font-size:29px;
+  line-height:1.6;
+  margin:24px 0 12px;
+  letter-spacing:1px
+  }
+.hero p {
+  font-size:11px;
+  letter-spacing:.5px;
+  margin-bottom:24px
+  }
+.hero .eyebrow {
+  font-size:8px;
+  margin-top:19px
+  }
+.intention-box {
+  padding:9px 10px 9px 20px;
+  margin-left:-3px;
+  margin-right:-3px;
+  gap:7px
+  }
+.intention-box input {
+  font-size:12px
+  }
+.send {
+  width:43px;
+  height:43px
+  }
+.suggestions {
+  gap:7px;
+  flex-wrap:nowrap;
+  justify-content:flex-start;
+  overflow:auto;
+  margin-right:-22px;
+  padding-right:22px
+  }
+.suggestion {
+  white-space:nowrap;
+  padding:9px 14px;
+  font-size:10px
+  }
+.hero-foot {
+  font-size:8px;
+  margin-top:16px
+  }
+.section-head {
+  margin-top:27px
+  }
+.section-head h2 {
+  font-size:25px
+  }
+.pill-btn {
+  font-size:10px;
+  padding:9px 13px
+  }
+.cards {
+  display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  margin-right:-22px;
+  padding:0 22px 10px 0;
+  gap:15px;
+  scrollbar-width:none
+  }
+.card {
+  flex:0 0 79%;
+  scroll-snap-align:start
+  }
+.cover {
+  height:320px;
+  border-radius:27px
+  }
+.cover-text {
+  left:23px;
+  right:23px;
+  bottom:24px
+  }
+.cover-text h3 {
+  font-size:24px
+  }
+.card .caption {
+  font-size:10px
+  }
+.daily {
+  grid-template-columns:1fr;
+  margin-top:20px;
+  gap:18px
+  }
+.affirm-panel {
+  padding:26px
+  }
+.affirm-panel blockquote {
+  font-size:23px
+  }
+.breath-panel {
+  padding:25px 27px
+  }
+.breath-orb {
+  width:75px;
+  height:75px;
+  margin-right:15px
+  }
+.footer {
+  flex-direction:column;
+  gap:9px;
+  line-height:1.8;
+  margin-top:25px;
+  text-align:center
+  }
+.dock {
+  height:65px;
+  bottom:18px;
+  max-width:calc(100% - 38px)
+  }
+.dock button {
+  font-size:9px;
+  gap:4px
+  }
+.dock svg {
+  width:23px;
+  height:23px
+  }
+.mini-player {
+  bottom:92px;
+  max-width:calc(100% - 38px);
+  padding:11px 14px
+  }
+.mini-time {
+  font-size:8px
+  }
+.page-intro {
+  margin-top:38px
+  }
+.page-intro h1 {
+  font-size:30px
+  }
+.page-intro p {
+  font-size:11px
+  }
+.tabs {
+  gap:6px
+  }
+.tabs button {
+  padding:9px 15px;
+  font-size:10px
+  }
+#library-tabs {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  text-align:center
+  }
+#library-tabs button {
+  padding:11px 6px;
+  font-size:11px
+  }
+.library-cards {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  overflow:visible;
+  margin:0;
+  padding:0;
+  gap:18px 12px
+  }
+.library-cards .cover {
+  height:235px;
+  border-radius:20px
+  }
+.library-cards .cover-text {
+  left:14px;
+  right:14px;
+  bottom:15px
+  }
+.library-cards .cover-text h3 {
+  font-size:17px;
+  margin-bottom:13px
+  }
+.library-cards .tag {
+  font-size:8px;
+  letter-spacing:1px
+  }
+.library-cards .heart {
+  top:11px;
+  right:10px;
+  width:29px;
+  height:29px;
+  font-size:18px
+  }
+.library-cards .play-card {
+  width:29px;
+  height:29px
+  }
+.library-cards .caption {
+  font-size:9px;
+  display:block;
+  line-height:1.8
+  }
+.library-cards .caption span:last-child {
+  display:none
+  }
+.affirm-card {
+  padding:32px;
+  min-height:360px
+  }
+.affirm-card blockquote {
+  font-size:27px
+  }
+.stats {
+  gap:9px
+  }
+.stat {
+  padding:22px 10px
+  }
+.stat b {
+  font-size:28px
+  }
+.stat span {
+  font-size:10px
+  }
+.modal {
+  padding:30px 24px;
+  border-radius:25px
+  }
+.modal h2 {
+  font-size:25px
+  }
+.overlay {
+  padding:15px
+  }
+.player-content {
+  padding:24px 26px 35px
+  }
+.player-phrase {
+  font-size:28px;
+  min-height:280px
+  }
+.player-title {
+  font-size:22px
+  }
+.player-extra button {
+  font-size:10px
+  }
+.toast {
+  bottom:165px
+  }
+.empty {
+  font-size:12px
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+* {
+  animation:none!important;
+  transition:none!important;
+  scroll-behavior:auto!important
+  }
+}
+
+.mobile-break {
+display:none
+}
+
+@media(max-width:600px) {
+.mobile-break {
+  display:block
+  }
+.hero h1 {
+  font-size:27px;
+  line-height:1.7
+  }
+.breath-panel h3 {
+  font-size:20px;
+  line-height:1.6
+  }
+}

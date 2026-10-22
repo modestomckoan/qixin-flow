@@ -1,0 +1,477 @@
+.footer button {
+font-size:9px;
+background:none;
+color:inherit
+}
+
+.dock {
+position:fixed;
+bottom:24px;
+left:50%;
+transform:translateX(-50%);
+width:570px;
+max-width:calc(100% - 36px);
+height:69px;
+background:#fffff3ed;
+backdrop-filter:blur(20px);
+box-shadow:0 10px 35px #526b4020,0 2px 5px #526b4010;
+border:1px solid #fff;
+border-radius:40px;
+z-index:6;
+display:flex;
+justify-content:space-evenly;
+align-items:center
+}
+
+.dock button {
+background:none;
+color:#a0aa91;
+display:flex;
+align-items:center;
+flex-direction:column;
+gap:5px;
+font-size:9px;
+min-width:65px
+}
+
+.dock button.active {
+color:#4a6441
+}
+
+.dock svg {
+width:23px;
+height:23px;
+stroke:currentColor;
+stroke-width:1.5;
+fill:none
+}
+
+.mini-player {
+position:fixed;
+bottom:104px;
+left:50%;
+transform:translateX(-50%);
+width:570px;
+max-width:calc(100% - 36px);
+background:#fcfcefef;
+backdrop-filter:blur(18px);
+padding:12px 17px;
+display:none;
+align-items:center;
+gap:12px;
+z-index:6;
+border-radius:21px;
+border:1px solid #fff;
+box-shadow:0 5px 20px #536b3f17
+}
+
+.mini-player.visible {
+display:flex
+}
+
+.mini-play {
+width:37px;
+height:37px;
+background:#687e54;
+color:white;
+border-radius:50%;
+font-size:14px
+}
+
+.mini-details {
+flex:1;
+cursor:pointer;
+min-width:0
+}
+
+.mini-details small {
+display:block;
+font-size:8px;
+color:#8d9b7d;
+letter-spacing:1.5px;
+margin-bottom:5px
+}
+
+.mini-details b {
+font-size:11px;
+font-weight:500;
+display:block;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis
+}
+
+.mini-time {
+font-size:9px;
+color:#8d997e
+}
+
+.mini-close {
+background:none;
+color:#9aa58e;
+font-size:20px
+}
+
+.page-intro {
+text-align:center;
+margin:50px 0 35px
+}
+
+.page-intro h1 {
+font-size:34px
+}
+
+.page-intro p {
+font-size:12px;
+line-height:1.8;
+color:#859376
+}
+
+.tabs {
+display:flex;
+justify-content:center;
+gap:10px;
+margin:25px 0
+}
+
+.tabs button {
+background:#fff8;
+border:1px solid transparent;
+border-radius:25px;
+padding:10px 22px;
+font-size:11px
+}
+
+.tabs button.active {
+background:#647e52;
+color:#fff
+}
+
+.library-cards {
+row-gap:30px
+}
+
+.empty {
+padding:60px 20px;
+grid-column:1/-1;
+text-align:center;
+color:#849573;
+border:1px dashed #b1c1a2;
+border-radius:20px;
+font-size:13px
+}
+
+.affirm-stage {
+max-width:620px;
+margin:35px auto;
+text-align:center
+}
+
+.affirm-card {
+background:#fffef1;
+box-shadow:0 13px 30px #647c4b20;
+border:5px solid #fffef9;
+border-radius:28px;
+min-height:340px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+padding:45px;
+margin-bottom:30px;
+transform:rotate(-2deg)
+}
+
+.affirm-card blockquote {
+font:30px/1.9 "Songti SC",serif;
+margin:25px 0
+}
+
+.affirm-card span {
+font-size:9px;
+letter-spacing:3px;
+color:#9aa68c
+}
+
+.affirm-actions {
+display:flex;
+gap:12px;
+justify-content:center
+}
+
+.stats {
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+max-width:700px;
+margin:30px auto
+}
+
+.stat {
+background:#fff7;
+border:1px solid #fff;
+border-radius:20px;
+text-align:center;
+padding:25px
+}
+
+.stat b {
+display:block;
+font:32px Georgia;
+margin-bottom:10px
+}
+
+.stat span {
+font-size:11px;
+color:#839174
+}
+
+.history {
+max-width:700px;
+margin:auto
+}
+
+.history-row {
+padding:18px 4px;
+border-bottom:1px solid #bdcbb0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:12px;
+gap:10px
+}
+
+.history-row small {
+display:block;
+color:#849573;
+margin-top:8px;
+font-size:10px
+}
+
+.history-row button {
+background:#fff7;
+border-radius:20px;
+padding:8px 15px;
+font-size:10px
+}
+
+.overlay {
+position:fixed;
+inset:0;
+background:#263d285c;
+backdrop-filter:blur(12px);
+z-index:20;
+display:none;
+justify-content:center;
+align-items:center;
+padding:22px
+}
+
+.overlay.open {
+display:flex
+}
+
+.modal {
+width:530px;
+max-height:91vh;
+overflow:auto;
+border:1px solid #fff8;
+border-radius:29px;
+padding:36px;
+background:#f5f7eb;
+position:relative;
+box-shadow:0 30px 100px #26351c25
+}
+
+.modal-close {
+position:absolute;
+top:15px;
+right:19px;
+border-radius:50%;
+width:30px;
+height:30px;
+background:#e7eddb;
+font-size:22px;
+color:#8a987b
+}
+
+.modal h2 {
+font:28px/1.5 "Songti SC",serif;
+margin:16px 0
+}
+
+.modal p {
+color:#849573;
+font-size:12px;
+line-height:1.9
+}
+
+.modal label {
+display:block;
+font-size:11px;
+margin:19px 0 9px
+}
+
+.modal input:not([type=checkbox]),.modal textarea,.modal select {
+width:100%;
+background:#fffef6;
+border:1px solid #d7e0ca;
+border-radius:13px;
+padding:13px;
+outline-color:#95ab7b
+}
+
+.modal textarea {
+height:102px;
+resize:vertical;
+line-height:1.8
+}
+
+.form-cols {
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px
+}
+
+.primary {
+background:#4a6441;
+color:#fffef4;
+border-radius:30px;
+padding:13px 24px;
+font-size:12px
+}
+
+.modal .primary {
+margin-top:22px
+}
+
+.consent {
+display:flex!important;
+align-items:flex-start;
+gap:9px;
+line-height:1.8;
+color:#7e8d71
+}
+
+.consent input {
+margin:4px 0 0;
+accent-color:#6b8259
+}
+
+.status {
+padding:10px 13px;
+background:#e7eddb;
+border-radius:10px;
+font-size:10px;
+line-height:1.8;
+color:#7d8f6d
+}
+
+.error {
+color:#8e5746;
+background:#f2e8dc;
+padding:12px;
+border-radius:10px;
+line-height:1.8;
+font-size:11px;
+margin-top:15px
+}
+
+.script {
+font:16px/2.2 "Songti SC",serif;
+white-space:pre-line;
+max-height:340px;
+overflow:auto;
+padding:20px;
+background:#fffef6;
+border-radius:15px;
+margin-top:18px
+}
+
+.result-actions {
+display:flex;
+gap:12px;
+align-items:center;
+flex-wrap:wrap
+}
+
+.result-actions .pill-btn {
+margin-top:22px
+}
+
+.full-player {
+position:fixed;
+inset:0;
+z-index:15;
+background:#273525;
+color:#fffce9;
+display:none;
+overflow-y:auto
+}
+
+.full-player.open {
+display:block
+}
+
+.player-bg {
+position:fixed;
+inset:0;
+background:radial-gradient(ellipse at 60% 30%,#778a5a,#273525 80%);
+background-size:cover;
+background-position:center;
+opacity:.55
+}
+
+.player-content {
+position:relative;
+max-width:580px;
+min-height:100dvh;
+margin:auto;
+padding:35px 35px 45px;
+display:flex;
+flex-direction:column
+}
+
+.player-head {
+display:flex;
+justify-content:space-between;
+align-items:center
+}
+
+.player-head button {
+border-radius:50%;
+background:#ffffff24;
+color:white;
+width:42px;
+height:42px;
+font-size:23px
+}
+
+.player-head span {
+font:24px Georgia,"Songti SC",serif
+}
+
+.player-phrase {
+font:30px/1.7 Georgia,"Songti SC",serif;
+flex:1;
+min-height:240px;
+display:flex;
+align-items:center;
+padding:45px 0;
+letter-spacing:1px
+}
+
+.player-read {
+align-self:start;
+border:1px solid #fff5;
+background:#fff2;
+color:#fffce9;
+border-radius:30px;
+padding:11px 19px;
+font-size:11px
+}
+
+.player-title {
+font:22px/1.6 "Songti SC",serif;
+margin:27px 0 12px
+}
