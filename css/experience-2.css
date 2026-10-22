@@ -1,0 +1,133 @@
+@media(max-width:600px) {
+.goal-strip {
+  margin-top:10px;
+  padding:17px;
+  align-items:flex-start;
+  gap:10px
+  }
+.goal-strip>.pill-btn {
+  font-size:9px;
+  padding:8px 10px
+  }
+.goal-placeholder {
+  font-size:10px;
+  line-height:1.8
+  }
+.goal-chip {
+  max-width:195px;
+  font-size:9px
+  }
+.goal-strip .eyebrow {
+  font-size:7px;
+  letter-spacing:1px
+  }
+.library-tools {
+  gap:8px
+  }
+.search-box {
+  padding:12px 14px
+  }
+.search-box input {
+  font-size:11px
+  }
+.library-tools select {
+  padding:12px 10px;
+  font-size:10px;
+  max-width:118px
+  }
+.library-count {
+  margin-top:10px
+  }
+.tabs {
+  gap:7px
+  }
+.tabs button {
+  padding:9px 12px;
+  font-size:10px
+  }
+.history-row {
+  font-size:11px
+  }
+.history-actions {
+  gap:4px
+  }
+.history-actions button {
+  font-size:9px;
+  padding:8px 10px
+  }
+.progress-summary {
+  font-size:9px;
+  gap:8px;
+  flex-wrap:wrap
+  }
+.progress-summary b {
+  font-size:18px
+  }
+.progress-summary .link-btn {
+  font-size:9px
+  }
+.account-tools .pill-btn {
+  font-size:9px
+  }
+.affirm-more {
+  gap:16px
+  }
+.affirm-more .link-btn {
+  font-size:10px
+  }
+.note-card {
+  padding:18px
+  }
+.note-card small {
+  font-size:9px;
+  margin-left:8px
+  }
+.player-phrase {
+  font-size:23px;
+  min-height:220px;
+  padding:32px 0
+  }
+.player-title {
+  font-size:20px;
+  margin-top:22px
+  }
+.playback {
+  margin:25px 0
+  }
+.playback .big-play {
+  height:68px;
+  width:68px
+  }
+.player-extra {
+  gap:9px
+  }
+.player-extra button {
+  padding:10px 18px
+  }
+.player-tools {
+  gap:17px;
+  margin-top:20px
+  }
+.player-tools button {
+  font-size:9px
+  }
+.continue-card {
+  font-size:9px;
+  padding:15px 17px
+  }
+.continue-title {
+  font-size:11px
+  }
+.goal-row .link-btn {
+  font-size:9px
+  }
+.goal-row>span {
+  font-size:11px
+  }
+.hero {
+  padding-bottom:23px
+  }
+.hero-foot:after {
+  display:none
+  }
+}
