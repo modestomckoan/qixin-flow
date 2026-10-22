@@ -1,0 +1,78 @@
+.meditate-layout {
+display:grid;
+grid-template-columns:150px minmax(0,1fr);
+gap:26px;
+margin-top:34px;
+align-items:start
+}
+
+.meditate-tabs {
+position:sticky;
+top:24px;
+display:flex;
+flex-direction:column;
+gap:5px;
+background:#f3f6e8;
+border:1px solid #ffffff;
+border-radius:20px;
+padding:12px
+}
+
+.meditate-tabs button {
+background:none;
+border-radius:14px;
+padding:13px 12px;
+font-size:12px;
+color:#7d8a72;
+text-align:left;
+transition:background .2s,color .2s
+}
+
+.meditate-tabs button:hover {
+background:#e8eeda
+}
+
+.meditate-tabs button.active {
+background:#5d774f;
+color:#fffef0
+}
+
+.meditate-content {
+min-width:0
+}
+
+.meditate-empty {
+background:#fbfcef90;
+border:1px solid #ffffff;
+border-radius:20px;
+padding:80px 28px;
+text-align:center;
+color:#8b9977;
+font-size:13px;
+line-height:2.2
+}
+
+@media(max-width:600px) {
+.meditate-layout {
+  grid-template-columns:92px minmax(0,1fr);
+  gap:12px;
+  margin-top:22px
+  }
+.meditate-tabs {
+  padding:8px;
+  gap:4px;
+  border-radius:16px;
+  top:14px
+  }
+.meditate-tabs button {
+  padding:11px 7px;
+  font-size:10px;
+  text-align:center;
+  border-radius:10px
+  }
+.meditate-empty {
+  padding:48px 14px;
+  font-size:12px;
+  line-height:2
+  }
+}

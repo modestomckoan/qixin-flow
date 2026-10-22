@@ -1,0 +1,459 @@
+:root {
+--community-green:#4e6845;
+--community-cream:#fffdf4
+}
+
+.shell {
+max-width:1270px;
+padding-top:30px
+}
+
+.dock {
+width:640px
+}
+
+.dock button {
+min-width:65px
+}
+
+.community-preview-label {
+font-size:9px;
+color:#8d9a7d;
+letter-spacing:1px
+}
+
+.community-avatar {
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:37px;
+height:37px;
+flex-shrink:0;
+border-radius:50%;
+font:17px "Songti SC",serif;
+background:#dfe8cc;
+color:#6f8253
+}
+
+.community-avatar.small {
+width:23px;
+height:23px;
+font-size:11px
+}
+
+.community-avatar.olive {
+background:#e4e4cd;
+color:#929459
+}
+
+.community-avatar.blue {
+background:#dce6e3;
+color:#789087
+}
+
+.community-avatar.sand {
+background:#eee3d0;
+color:#a29271
+}
+
+.community-avatar.peach {
+background:#eddcd3;
+color:#a48a78
+}
+
+.header-avatar {
+border:1px solid #ffffff99;
+width:39px;
+height:39px;
+font-size:14px
+}
+
+.community-topline {
+display:flex;
+justify-content:flex-end;
+align-items:center;
+margin:30px 0 22px;
+gap:20px
+}
+
+.community-topline h1 {
+font-size:30px;
+letter-spacing:1px;
+margin:10px 0 9px
+}
+
+.community-topline p {
+font-size:11px;
+color:#8a987a;
+letter-spacing:.5px;
+margin:0
+}
+
+.community-topline .eyebrow {
+font-size:8px;
+letter-spacing:2px
+}
+
+.compose-desktop {
+font-size:11px;
+padding:13px 20px;
+flex-shrink:0
+}
+
+.community-layout {
+display:grid;
+grid-template-columns:minmax(0,1fr) 256px;
+gap:28px
+}
+
+.community-main {
+min-width:0
+}
+
+.community-banner {
+background:linear-gradient(120deg,#d6e2c9,#e6ebda);
+border:1px solid #ffffff88;
+min-height:234px;
+border-radius:23px;
+position:relative;
+overflow:hidden;
+display:flex;
+padding:25px 30px;
+align-items:center
+}
+
+.banner-copy {
+position:relative;
+z-index:2;
+width:67%
+}
+
+.banner-eyebrow {
+font-size:8px;
+letter-spacing:2px;
+color:#7c8f68
+}
+
+.community-banner h2 {
+font:27px/1.55 "Songti SC",serif;
+letter-spacing:1px;
+margin:10px 0 8px;
+color:#4c6640
+}
+
+.community-banner p {
+font-size:10px;
+line-height:1.9;
+color:#859672;
+margin:0 0 16px
+}
+
+.banner-button {
+padding:8px 12px;
+border-radius:25px;
+border:1px solid #f9fcf0bb;
+background:#f5f9e86e;
+font-size:9px;
+color:#6a8057
+}
+
+.banner-photo {
+position:absolute;
+right:23px;
+top:28px;
+bottom:27px;
+width:32%;
+background-size:cover;
+background-position:center;
+border:6px solid #f8f9eb;
+box-shadow:0 10px 25px #73865b26;
+transform:rotate(6deg);
+border-radius:4px;
+display:flex;
+align-items:flex-end;
+justify-content:center
+}
+
+.photo-label {
+font:italic 10px Georgia;
+color:#fff6d9;
+padding:12px 0 6px;
+background:linear-gradient(transparent,#34452a80);
+width:100%;
+text-align:center
+}
+
+.banner-flower {
+position:absolute;
+right:31%;
+bottom:20px;
+z-index:3;
+font-size:43px;
+color:#8fa16d;
+text-shadow:0 2px #f1f4e5;
+transform:rotate(10deg)
+}
+
+.community-toolbar {
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:18px;
+margin:26px 0 18px
+}
+
+.community-feed-tabs {
+display:flex;
+gap:24px;
+flex-shrink:0
+}
+
+.community-feed-tabs button {
+position:relative;
+font-size:14px;
+color:#94a084;
+padding:8px 0;
+background:none
+}
+
+.community-feed-tabs .active {
+color:#4b663c;
+font-weight:500
+}
+
+.community-feed-tabs .active:after {
+content:'';
+position:absolute;
+bottom:0;
+left:calc(50% - 9px);
+width:18px;
+height:3px;
+border-radius:4px;
+background:#738b5d
+}
+
+.community-search {
+display:flex;
+align-items:center;
+gap:9px;
+border:1px solid #fffff499;
+background:#fffdf46b;
+border-radius:30px;
+padding:9px 13px;
+width:210px;
+color:#8f9b82
+}
+
+.community-search span {
+font-size:20px;
+line-height:1
+}
+
+.community-search input {
+width:100%;
+min-width:0;
+border:0;
+background:none;
+outline:0;
+font-size:10px
+}
+
+.community-search input::placeholder {
+color:#a1ac96
+}
+
+.community-topics {
+display:flex;
+gap:7px;
+overflow:auto;
+scrollbar-width:none;
+padding:0 0 4px
+}
+
+.community-topic-pill {
+white-space:nowrap;
+font-size:9px;
+background:#fdfef46e;
+color:#8a987a;
+border:1px solid #ffffff77;
+border-radius:20px;
+padding:8px 12px
+}
+
+.community-topic-pill.active {
+background:#657e50;
+color:#fffef2;
+border-color:#657e50
+}
+
+.feed-status {
+font-size:9px;
+color:#8a9a77;
+margin:10px 1px;
+min-height:6px
+}
+
+.community-feed {
+column-count:2;
+column-gap:19px
+}
+
+.community-post {
+display:inline-block;
+width:100%;
+break-inside:avoid;
+margin:0 0 20px;
+border-radius:18px;
+overflow:hidden;
+background:#fcfcf3c7;
+border:1px solid #fffdf3;
+box-shadow:0 3px 12px #5b754108;
+cursor:pointer;
+transition:transform .2s,box-shadow .2s
+}
+
+.community-post:hover {
+transform:translateY(-3px);
+box-shadow:0 10px 25px #5b75411a
+}
+
+.post-cover {
+position:relative;
+background-size:cover;
+background-position:center;
+overflow:hidden
+}
+
+.post-cover.tall {
+height:267px
+}
+
+.post-cover.medium {
+height:220px
+}
+
+.post-cover.short {
+height:190px
+}
+
+.post-image-topic {
+position:absolute;
+bottom:13px;
+left:13px;
+color:#fffceb;
+font-size:9px;
+letter-spacing:.7px;
+background:#2c3b2660;
+backdrop-filter:blur(8px);
+border:1px solid #fff2;
+border-radius:20px;
+padding:6px 10px
+}
+
+.post-bookmark {
+position:absolute;
+right:11px;
+top:11px;
+width:28px;
+height:28px;
+border-radius:50%;
+font-size:17px;
+background:#fffcdf70;
+backdrop-filter:blur(5px);
+color:#6e815a;
+border:1px solid #fff7
+}
+
+.post-bookmark.on {
+color:#4d6b3a;
+background:#fffceb
+}
+
+.post-cover.quote {
+background:radial-gradient(ellipse at 20% 0,#ffffed,#dbe5c9);
+padding:24px 20px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+text-align:center
+}
+
+.cover-kicker {
+font-size:7px;
+letter-spacing:2px;
+color:#91a17b
+}
+
+.cover-quote {
+font:21px/1.8 "Songti SC",serif;
+white-space:pre-line;
+color:#657b50;
+margin:17px 0
+}
+
+.quote-leaf {
+font-size:24px;
+color:#b2c397
+}
+
+.post-content {
+padding:14px 14px 12px
+}
+
+.post-topic {
+font-size:9px;
+color:#8a9c70;
+background:none
+}
+
+.post-content h3 {
+font-size:13px;
+font-weight:500;
+line-height:1.8;
+margin:6px 0 12px;
+color:#4b5f40;
+letter-spacing:.2px
+}
+
+.post-author-row {
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:7px
+}
+
+.post-author {
+display:flex;
+align-items:center;
+gap:7px;
+background:none;
+padding:0;
+min-width:0;
+color:#8a987b;
+font-size:9px
+}
+
+.post-author>span:last-child {
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis
+}
+
+.post-like {
+flex-shrink:0;
+font-size:17px;
+display:flex;
+align-items:center;
+gap:4px;
+background:none;
+padding:0;
+color:#9aa68b
+}
+
+.post-like span {
+font-size:9px
+}
+
+.post-like.on {
+color:#a87962
+}
