@@ -427,7 +427,7 @@
     else document.body.appendChild(sec);
   }
 
-  /* ---------- 启动：跳过问卷，立即进连续页 ---------- */
+  /* ---------- 构建界面骨架（不切换视图） ---------- */
   function showNow(){
     try{
       const onb=document.getElementById('view-onb');
@@ -437,7 +437,6 @@
     buildChrome();
     addExtraViews();
     insertView();
-    go('explore');
   }
 
   /* 课程数据就绪后刷新课卡 */
@@ -461,7 +460,12 @@
 
   function boot(){
     showNow();
-    setTimeout(function(){ loadProgram(); }, 500);
+    // 先加载 30 天课程数据，就绪后再进「冥想」首页，避免空数据渲染报错
+    loadProgram().then(function(){
+      go('home');
+    }).catch(function(){
+      go('home');
+    });
   }
 
   /* ---------- 移除 roost 悬浮球 ---------- */
