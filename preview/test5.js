@@ -1,0 +1,2 @@
+function svg(p){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';}
+function cover(){return '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="32" cy="32" r="22" opacity=".42"/><circle cx="32" cy="32" r="12.5"/><circle cx="32" cy="32" r="3.4" fill="currentColor" stroke="none"/></svg>';}
