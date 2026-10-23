@@ -1,14 +1,16 @@
 /* ============================================================
-   栖心 Flow · 探索页（集成进主站的"探索"Tab）
-   - 视觉/导航严格对齐《冥想资源库效果图》确认版
-   - 底部：冥想 / 探索(高亮) / 同频 / 心语 / 我的（栖心主站 5 Tab）
-   - 内部子 tab：探索 / 课程 / 声音 / 场景
-   - 30 天课程、声音花园、播放复用 roost 内核（真实可播）
+   栖心 Flow · 探索页（连续单页 · 上滑吸顶）
+   - 上半：探索总览（搜索 + 8 宫格 + 30天计划/声音花园 + 设备横幅）
+   - 上滑：横向大分类 冥想/课程/备考/少儿 吸顶
+   - 冥想：左侧 放松/呼吸/解压/助眠/专注 同步吸顶，右侧真实课卡
+   - 课卡 → startSession（真实播放）；声音花园 → 混音台；30天 → 系列课
+   - 底部：冥想 / 探索(高亮) / 同频 / 心语 / 我的
    ============================================================ */
 (function(){
   const R = 'https://modestomckoan.github.io/roost/';
+  const MAIN = '../index.html';
 
-  /* ---------- 图标（与效果图一致的栖心绿色线性 SVG） ---------- */
+  /* ---------- 图标（栖心绿色线性 SVG） ---------- */
   const I = {
     home: '<path d="M4 11.5l8-6 8 6V19.5h-5v-5.5h-6v5.5H4z"/>',
     book: '<path d="M12 6.2c-2.4-1.2-4.6-1.4-7.6-.8v13.2c3-.6 5.2-.4 7.6.8M12 6.2c2.4-1.2 4.6-1.4 7.6-.8v13.2c-3-.6-5.2-.4-7.6.8M12 6.2v13.2"/>',
@@ -24,14 +26,13 @@
     box: '<path d="M3 8l2-3h14l2 3v11H3z"/><path d="M3 8h18M10 12.5h4"/>',
     chevron: '<path d="M9 6l6 6-6 6"/>',
     brain: '<path d="M3 14c3-7 5-7 8 0s4 6 7 0"/><circle cx="15.6" cy="11.6" r="1.4" fill="currentColor" stroke="none"/>',
-    leaf: '<path d="M12 20v-8"/><path d="M12 12c-2.5 0-4.5-1.8-4.5-4.5C10.5 7.5 12 9 12 12z"/><path d="M12 12c2.5 0 4.5-1.8 4.5-4.5C13.5 7.5 12 9 12 12z"/>',
+    leaf: '<path d="M12 20v-8"/><path d="M12 12c-2.5 0-4.5-1.8-4.5-4.5C10.5 7.5 12 9 12 12z"/><path d="M12 12c2.5 0 4.5-1.8-4.5-4.5C13.5 7.5 12 9 12 12z"/>',
     search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
     cover: '<circle cx="32" cy="32" r="22" opacity=".42"/><circle cx="32" cy="32" r="12.5"/><circle cx="32" cy="32" r="3.4" fill="currentColor" stroke="none"/>'
   };
   function svg(p, box){ box = box || 24; return '<svg viewBox="0 0 '+box+' '+box+'" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>'; }
 
   /* ---------- 主站 5 Tab（跨页跳回主站） ---------- */
-  const MAIN = '../index.html';
   const DOCK = [
     { key:'home', label:'冥想', icon:I.home, href:MAIN+'#home' },
     { key:'explore', label:'探索', icon:I.book, current:true },
@@ -39,28 +40,28 @@
     { key:'affirm', label:'心语', icon:I.star, href:MAIN+'#affirm' },
     { key:'me', label:'我的', icon:I.user, href:MAIN+'#me' }
   ];
-  /* ---------- 探索内部 子 tab ---------- */
-  const SUB = [
-    { key:'explore', label:'探索' },
-    { key:'courses', label:'课程' },
-    { key:'sounds', label:'声音' },
-    { key:'modes', label:'场景' }
+
+  /* ---------- 横向 4 大分类 ---------- */
+  const HTABS = [
+    { key:'meditate', name:'冥想' },
+    { key:'course', name:'课程' },
+    { key:'exam', name:'备考' },
+    { key:'kids', name:'少儿' }
   ];
 
-  /* ---------- 5 个方向（与效果图一致，无系列课标签） ---------- */
-  const CATS = [
-    { key:'self',  name:'自我关怀', days:[7,20,27] },
-    { key:'sleep', name:'睡前安心', days:[6,8,11] },
-    { key:'focus', name:'找回专注', days:[3,23,5] },
-    { key:'stress',name:'减轻压力', days:[17,18,19] },
-    { key:'grow',  name:'慢慢成长', days:[22,28,30] }
+  /* ---------- 冥想内 5 项（左竖栏） ---------- */
+  const TABS = [
+    { key:'relax', name:'放松', days:[7,20,27] },
+    { key:'breath', name:'呼吸', days:[1,2,9] },
+    { key:'relieve', name:'解压', days:[17,18,19] },
+    { key:'sleep', name:'助眠', days:[6,11,14] },
+    { key:'focus', name:'专注', days:[3,5,23] }
   ];
 
   function getProgram(){
     try { return (typeof PROGRAM!=='undefined' && Array.isArray(PROGRAM) && PROGRAM.length) ? PROGRAM : null; }
     catch(e){ return null; }
   }
-
   function toast(msg){
     let t=document.getElementById('qx-toast');
     if(!t){ t=document.createElement('div'); t.id='qx-toast'; t.className='qx-toast'; document.body.appendChild(t); }
@@ -69,7 +70,7 @@
   }
   function goMain(href){ window.location.href=href; }
 
-  /* ---------- 顶部标题栏（与效果图一致） ---------- */
+  /* ---------- 顶部标题栏 ---------- */
   function appBar(){
     return '<div class="qx-appbar">' +
       '<button class="qx-icon-btn" data-main="'+MAIN+'#home" aria-label="返回主页">' +
@@ -82,78 +83,92 @@
     '</div>';
   }
 
-  /* ---------- 探索总览（屏一） ---------- */
+  /* ---------- 8 宫格（data-app 索引） ---------- */
   const APPS = [
-    { label:'番茄钟', icon:I.tomato, action:()=>toast('番茄钟即将上线，先从一次呼吸开始') },
-    { label:'呼吸', icon:I.breath, action:()=>go('modes') },
-    { label:'连耳机', icon:I.ear, action:()=>go('device') },
-    { label:'白噪音', icon:I.wave, action:()=>go('sounds') },
-    { label:'社区', icon:I.people, action:()=>goMain(MAIN+'#community') },
-    { label:'日记', icon:I.pen, action:()=>go('archive') },
-    { label:'课程', icon:I.calendar, action:()=>go('courses') },
-    { label:'档案', icon:I.box, action:()=>go('planner') }
+    { label:'番茄钟', icon:I.tomato, act:'toast' },
+    { label:'呼吸', icon:I.breath, act:'breath' },
+    { label:'连耳机', icon:I.ear, act:'go:device' },
+    { label:'白噪音', icon:I.wave, act:'go:sounds' },
+    { label:'社区', icon:I.people, act:'main:community' },
+    { label:'日记', icon:I.pen, act:'toast' },
+    { label:'课程', icon:I.calendar, act:'course' },
+    { label:'档案', icon:I.box, act:'toast' }
   ];
 
-  function exploreHtml(){
-    const grid = APPS.map((a,i)=>
-      '<button class="gi" data-app="'+i+'"><span class="gi-ic">'+svg(a.icon)+'</span><span class="gi-tx">'+a.label+'</span></button>'
-    ).join('');
-    return (
-      '<div class="qx-explore-page">' + appBar() +
-        '<div class="qx-searchrow"><span class="qx-chev" data-go="courses">'+svg(I.chevron)+'</span>' +
-          '<button class="qx-search-pill" data-go="sounds"><span class="sp">'+svg(I.search)+'</span>搜索课程、声音…</button>' +
-        '</div>' +
-        '<div class="grid10">'+grid+'</div>' +
-        '<div class="banners">' +
-          '<button class="banner green" data-go="program"><span class="b-ic">'+svg(I.calendar)+'</span><div class="b-t">30 天计划</div><div class="b-s">循序渐进，每天一课</div></button>' +
-          '<button class="banner blue" data-go="sounds"><span class="b-ic">'+svg(I.leaf)+'</span><div class="b-t">声音花园</div><div class="b-s">自然声音，自由混音</div></button>' +
-        '</div>' +
-        '<button class="device-banner" data-go="device"><span class="db-ic">'+svg(I.brain)+'</span>' +
-          '<span class="db-tx"><span class="db-t">连接设备，开启脑机之旅</span><span class="db-s">让冥想真正有效</span></span>' +
-          '<span class="db-go">'+svg(I.chevron)+'</span></button>' +
-      '</div>'
-    );
-  }
-
-  /* ---------- 课程列表（屏二）：左 5 分类 + 右封面课卡 ---------- */
+  /* ---------- 课卡 ---------- */
   function coverSvg(){ return '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2">'+I.cover+'</svg>'; }
   function lessonCard(d){
     const min = (d && (d.dur || d.duration || d.minutes)) || 15;
     return (
-      '<button class="course" data-day="'+d.day+'"><span class="cover">'+coverSvg()+'</span>' +
-      '<span class="cinfo"><span class="c-title">Day '+d.day+' · '+d.title+'</span>' +
-      '<span class="c-meta">'+min+' 分钟 · 身体扫描</span>' +
-      '<span class="c-desc">舒适节律 · 可随时改自然呼吸</span></span></button>'
+      '<button class="qx-lc" data-day="'+d.day+'"><span class="lc-cover">'+coverSvg()+'</span>' +
+      '<span class="lc-info"><span class="lc-title">Day '+d.day+' · '+d.title+'</span>' +
+      '<span class="lc-meta">'+min+' 分钟 · 引导冥想</span>' +
+      '<span class="lc-desc">跟随你的节奏</span></span></button>'
     );
   }
-  function courseListHtml(catKey){
+  function lessonListHtml(tabKey){
     const P = getProgram();
-    const c = CATS.find(x=>x.key===catKey) || CATS[0];
+    const t = TABS.find(x=>x.key===tabKey) || TABS[0];
     if(!P) return '<div class="qx-load">课程加载中…</div>';
-    return c.days.map(n=>P[n-1]).filter(Boolean).map(lessonCard).join('');
-  }
-  function coursesHtml(){
-    const rail = CATS.map((c,i)=>'<button class="cat'+(i===0?' on':'')+'" data-cat="'+c.key+'">'+c.name+'</button>').join('');
-    return appBar() + '<div class="qx-courses-page"><div class="cats" id="qx-cats">'+rail+'</div>' +
-      '<div class="courses" id="qx-course-list">'+courseListHtml('self')+'</div></div>';
-  }
-  function renderCourses(catKey){
-    document.querySelectorAll('#qx-cats .cat').forEach(b=>b.classList.toggle('on', b.dataset.cat===catKey));
-    const listEl = document.getElementById('qx-course-list');
-    if(listEl) listEl.innerHTML = courseListHtml(catKey);
+    return t.days.map(n=>P[n-1]).filter(Boolean).map(lessonCard).join('');
   }
 
-  /* ---------- 注入底部 5 Dock + 子 tab ---------- */
+  /* ---------- 空状态 ---------- */
+  const EMPTY = {
+    course: ['<path d="M12 5v16M12 5C8 2 3 3 2 4v15c4-1 7-1 10 2 3-3 6-3 10-2V4c-3-2-7-1-10 1Z"/>', '系列课程', '正在精心编排，即将与你见面'],
+    exam: ['<path d="M5 19V5h11l3 3v11H5z"/><path d="M8 8h7M8 12h7M8 16h5"/>', '备考专区', '考前专注与减压方案，正在准备中'],
+    kids: ['<circle cx="12" cy="8" r="3.2"/><path d="M5 20c.2-3.7 3.2-5.4 7-5.4s6.8 1.7 7 5.4"/>', '少儿启蒙', '孩子的呼吸与情绪小课堂，敬请期待']
+  };
+  function emptyHtml(key){
+    const e = EMPTY[key];
+    return '<div class="qx-empty"><span class="e-ic">'+svg(e[0])+'</span><div class="e-t">'+e[1]+'</div><div class="e-s">'+e[2]+'</div></div>';
+  }
+
+  /* ---------- 连续页 HTML ---------- */
+  function pageHtml(){
+    const grid = APPS.map((a,i)=>
+      '<button class="gi" data-app="'+i+'"><span class="gi-ic">'+svg(a.icon)+'</span><span class="gi-tx">'+a.label+'</span></button>'
+    ).join('');
+    const htabs = HTABS.map((h,i)=>'<button class="qx-ht'+(i===0?' on':'')+'" data-ht="'+h.key+'">'+h.name+'</button>').join('');
+    const side = TABS.map((t,i)=>'<button class="qx-st'+(i===0?' on':'')+'" data-st="'+t.key+'">'+t.name+'</button>').join('');
+
+    const panels =
+      '<div class="qx-hpanel on" data-panel="meditate"><div class="qx-layout">' +
+        '<aside class="qx-side">'+side+'</aside>' +
+        '<div class="qx-lessons" id="qx-lessons">'+lessonListHtml('relax')+'</div>' +
+      '</div></div>' +
+      '<div class="qx-hpanel" data-panel="course">'+emptyHtml('course')+'</div>' +
+      '<div class="qx-hpanel" data-panel="exam">'+emptyHtml('exam')+'</div>' +
+      '<div class="qx-hpanel" data-panel="kids">'+emptyHtml('kids')+'</div>';
+
+    return (
+      '<div class="qx-page">'+appBar()+
+        '<div class="qx-scroll">' +
+          '<div class="qx-searchrow"><span class="qx-chev" data-ht-go="course">'+svg(I.chevron)+'</span>' +
+            '<button class="qx-search-pill" data-ht-go="meditate"><span class="sp">'+svg(I.search)+'</span>搜索课程、声音…</button></div>' +
+          '<div class="qx-grid">'+grid+'</div>' +
+          '<div class="qx-banners">' +
+            '<button class="qx-banner green" data-go="program"><span class="b-ic">'+svg(I.calendar)+'</span><div class="b-t">30 天计划</div><div class="b-s">循序渐进，每天一课</div></button>' +
+            '<button class="qx-banner blue" data-go="sounds"><span class="b-ic">'+svg(I.leaf)+'</span><div class="b-t">声音花园</div><div class="b-s">自然声音，自由混音</div></button>' +
+          '</div>' +
+          '<button class="qx-device" data-go="device"><span class="db-ic">'+svg(I.brain)+'</span>' +
+            '<span class="db-tx"><span class="db-t">连接设备，开启脑机之旅</span><span class="db-s">让冥想真正有效</span></span>' +
+            '<span class="db-go">'+svg(I.chevron)+'</span></button>' +
+          '<div class="qx-swipe-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V6M6 12l6-6 6 6"/></svg></div>' +
+          '<nav class="qx-htabs">'+htabs+'</nav>' +
+          '<div class="qx-panels">'+panels+'</div>' +
+        '</div>'+
+      '</div>'
+    );
+  }
+
+  /* ---------- 底部 5 Dock ---------- */
   function buildChrome(){
     const oldTab = document.getElementById('tabbar');
     if(oldTab) oldTab.style.display='none';
-    if(document.getElementById('qx-subtab')) return;
-
-    const sub = document.createElement('nav');
-    sub.id='qx-subtab'; sub.className='qx-subtab';
-    sub.innerHTML = SUB.map(s=>'<button class="st" data-sub="'+s.key+'">'+s.label+'</button>').join('');
-    document.body.appendChild(sub);
-
+    const oldSub = document.getElementById('qx-subtab');
+    if(oldSub) oldSub.remove();
+    if(document.getElementById('qx-dock')) return;
     const dock = document.createElement('nav');
     dock.id='qx-dock'; dock.className='qx-dock';
     dock.innerHTML = DOCK.map(d=>{
@@ -163,30 +178,43 @@
     document.body.appendChild(dock);
   }
 
-  /* ---------- 按当前视图同步底部高亮 / 显隐 ---------- */
-  const SUB_VIEWS = { explore:'explore', courses:'courses', sounds:'sounds', modes:'modes' };
-  const CHROME_HIDDEN = ['onb','session'];
-  function syncChrome(name){
-    const dock=document.getElementById('qx-dock');
-    const sub=document.getElementById('qx-subtab');
-    if(!dock) return;
-    const hide = CHROME_HIDDEN.includes(name);
-    dock.classList.toggle('hidden', hide);
-    const subKey = SUB_VIEWS[name];
-    sub.classList.toggle('hidden', hide || !subKey);
-    sub.querySelectorAll('.st').forEach(b=>b.classList.toggle('on', b.dataset.sub===subKey));
+  /* ---------- 滚动到分类吸顶 ---------- */
+  function scrollToTabs(){
+    const tabs=document.querySelector('.qx-htabs');
+    const sc=document.querySelector('.qx-scroll');
+    if(!tabs || !sc) return;
+    const d = tabs.getBoundingClientRect().top - sc.getBoundingClientRect().top;
+    sc.scrollTop += d;
   }
 
-  /* ---------- 劫持 go()：旁路 roost 首页，统一到探索视图 ---------- */
+  /* ---------- 选横向大分类 ---------- */
+  function selectHtab(key, scroll){
+    document.querySelectorAll('.qx-htabs .qx-ht').forEach(x=>x.classList.toggle('on', x.dataset.ht===key));
+    document.querySelectorAll('.qx-hpanel').forEach(p=>p.classList.toggle('on', p.dataset.panel===key));
+    if(scroll) scrollToTabs();
+  }
+  /* ---------- 选冥想左竖栏 ---------- */
+  function selectStab(key){
+    document.querySelectorAll('.qx-side .qx-st').forEach(x=>x.classList.toggle('on', x.dataset.st===key));
+    const el=document.getElementById('qx-lessons');
+    if(el) el.innerHTML=lessonListHtml(key);
+  }
+
+  /* ---------- 劫持 go()：旁路 roost 首页/课程，统一到连续页 ---------- */
   const p0 = go;
   go = function(name){
-    if(name==='home' || name==='explore') name='explore';
-    p0(name);
-    if(name==='courses' && getProgram()){
-      const on=document.querySelector('#qx-cats .cat.on');
-      renderCourses(on?on.dataset.cat:'self');
+    const dock = document.getElementById('qx-dock');
+    if(dock) dock.classList.toggle('hidden', name==='session');
+    if(name==='home' || name==='explore'){
+      p0('explore');
+      return;
     }
-    try{ syncChrome(name); }catch(e){}
+    if(name==='courses'){
+      p0('explore');
+      selectHtab('meditate', true);
+      return;
+    }
+    p0(name);
   };
 
   /* ---------- 点击代理 ---------- */
@@ -202,15 +230,13 @@
       else toast('复制链接：'+u);
       return;
     }
-    const subBtn = e.target.closest('#qx-subtab [data-sub]');
-    if(subBtn){ go(subBtn.dataset.sub); return; }
-    const app = e.target.closest('[data-app]');
-    if(app){ const a=APPS[Number(app.dataset.app)]; if(a && a.action) a.action(); return; }
-    const goBtn = e.target.closest('[data-go]');
-    if(goBtn){ go(goBtn.dataset.go); return; }
-    const cat = e.target.closest('#qx-cats [data-cat]');
-    if(cat){ renderCourses(cat.dataset.cat); return; }
-    const day = e.target.closest('#qx-course-list [data-day]');
+    const htgo = e.target.closest('[data-ht-go]');
+    if(htgo){ selectHtab(htgo.dataset.htGo, true); return; }
+    const ht = e.target.closest('.qx-htabs [data-ht]');
+    if(ht){ selectHtab(ht.dataset.ht, true); return; }
+    const st = e.target.closest('.qx-side [data-st]');
+    if(st){ selectStab(st.dataset.st); return; }
+    const day = e.target.closest('.qx-lessons [data-day]');
     if(day){
       const n = Number(day.dataset.day);
       if(typeof startSession==='function') startSession(n);
@@ -218,36 +244,49 @@
       else toast('请稍候，课程正在加载');
       return;
     }
+    const goBtn = e.target.closest('[data-go]');
+    if(goBtn){ p0(goBtn.dataset.go); return; }
+    const app = e.target.closest('[data-app]');
+    if(app){
+      const a = APPS[Number(app.dataset.app)];
+      if(!a) return;
+      if(a.act==='toast') toast(a.label+'即将上线，先从一次呼吸开始');
+      else if(a.act==='breath'){ selectHtab('meditate',true); selectStab('breath'); }
+      else if(a.act==='course'){ selectHtab('course',true); }
+      else if(a.act.indexOf('go:')===0){ p0(a.act.slice(3)); }
+      else if(a.act.indexOf('main:')===0){ goMain(MAIN+'#'+a.act.slice(5)); }
+      return;
+    }
   });
 
-  /* ---------- 渲染探索总览 / 课程库（独立视图，旁路 roost 首页） ---------- */
-  function insertView(id, inner){
-    if(document.getElementById(id)) return;
+  /* ---------- 插入连续页视图 ---------- */
+  function insertView(){
+    if(document.getElementById('view-explore')) return;
     const sec=document.createElement('section');
-    sec.className='view'; sec.id='view-'+id;
-    sec.innerHTML='<div class="qx-screenwrap">'+inner+'</div>';
+    sec.className='view'; sec.id='view-explore';
+    sec.innerHTML=pageHtml();
     const tabbar=document.getElementById('tabbar');
     if(tabbar && tabbar.parentNode) tabbar.parentNode.insertBefore(sec,tabbar);
     else document.body.appendChild(sec);
   }
-  function render(){
-    insertView('explore', exploreHtml());
-    insertView('courses', coursesHtml());
-  }
 
-  /* ---------- 启动：跳过问卷，立即进探索总览（不等数据） ---------- */
-  function showExploreNow(){
+  /* ---------- 启动：跳过问卷，立即进连续页 ---------- */
+  function showNow(){
     try{
       const onb=document.getElementById('view-onb');
       if(onb) onb.remove();
       localStorage.setItem('calm_onboarded','1');
     }catch(e){}
     buildChrome();
-    render();
+    insertView();
     go('explore');
-    syncChrome('explore');
   }
 
+  /* 课程数据就绪后刷新课卡 */
+  function refreshLessons(){
+    const on=document.querySelector('.qx-side .qx-st.on');
+    selectStab(on?on.dataset.st:'relax');
+  }
   function loadProgram(){
     if(getProgram()) return Promise.resolve();
     return fetch(R+'index.html')
@@ -258,19 +297,16 @@
         PROGRAM=JSON.parse(m[1]);
         if(typeof loadProgramData==='function'){ try{ loadProgramData(); }catch(e){} }
       })
-      .then(()=>{
-        const sec=document.getElementById('view-courses');
-        if(sec){ const w=sec.querySelector('.qx-screenwrap'); if(w) w.innerHTML=coursesHtml(); }
-      })
+      .then(()=>refreshLessons())
       .catch(err=>{ console.error('PROGRAM 加载失败', err); });
   }
 
   function boot(){
-    showExploreNow();                          // 立即进总览，splash 淡出后不会露出问卷
-    setTimeout(function(){ loadProgram(); }, 500);  // 脱离当前同步执行流再拉数据
+    showNow();
+    setTimeout(function(){ loadProgram(); }, 500);
   }
 
-  /* ---------- 移除 roost 注入的悬浮球（遮挡导航） ---------- */
+  /* ---------- 移除 roost 悬浮球 ---------- */
   function removeOrb(){
     document.querySelectorAll('body *').forEach(el=>{
       if(el.id==='tabbar' || el.closest('#tabbar')) return;
@@ -282,17 +318,10 @@
   }
   new MutationObserver(()=>removeOrb()).observe(document.body,{childList:true,subtree:true});
 
-  /* 课程数据异步就绪后，若停留在课程页则刷新 */
   let _ref=0;
   const _refTimer=setInterval(()=>{
-    if(getProgram()){
-      const sec=document.getElementById('view-courses');
-      if(sec && sec.classList.contains('active')){
-        const w=sec.querySelector('.qx-screenwrap');
-        if(w) w.innerHTML=coursesHtml();
-      }
-      clearInterval(_refTimer);
-    } else if(++_ref>40) clearInterval(_refTimer);
+    if(getProgram()){ refreshLessons(); clearInterval(_refTimer); }
+    else if(++_ref>40) clearInterval(_refTimer);
   },1000);
 
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', boot);
