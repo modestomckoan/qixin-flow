@@ -1,39 +1,1383 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e6eadb"><title>栖心 Flow · 你的专属冥想</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ctext y='32' font-size='32'%3E🌿%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="css/core-1.css">
-<link rel="stylesheet" href="css/core-2.css">
-<link rel="stylesheet" href="css/core-3.css">
-<link rel="stylesheet" href="css/splash.css">
-<link rel="stylesheet" href="css/experience-1.css">
-<link rel="stylesheet" href="css/experience-2.css">
-<link rel="stylesheet" href="css/affirm.css">
-<link rel="stylesheet" href="css/meditate.css">
-<link rel="stylesheet" href="css/community-1.css">
-<link rel="stylesheet" href="css/community-2.css">
-<link rel="stylesheet" href="css/community-3.css">
-<link rel="stylesheet" href="css/community-4.css"></head><body><svg style="position:absolute;width:0;height:0" aria-hidden="true"><defs><symbol id="home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8M5 10v11h5v-7h4v7h5V10"/></symbol><symbol id="book" viewBox="0 0 24 24"><path d="M12 5v16M12 5C8 2 3 3 2 4v15c4-1 7-1 10 2 3-3 6-3 10-2V4c-3-2-7-1-10 1Z"/></symbol><symbol id="explore" viewBox="0 0 24 24"><path d="M12 6.2c-2.4-1.2-4.6-1.4-7.6-.8v13.2c3-.6 5.2-.4 7.6.8M12 6.2c2.4-1.2 4.6-1.4 7.6-.8v13.2c-3-.6-5.2-.4-7.6.8M12 6.2v13.2"/></symbol><symbol id="star" viewBox="0 0 24 24"><path d="m12 2 3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1Z"/></symbol><symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 22v-3c0-8 16-8 16 0v3Z"/></symbol></defs></svg>
-<div class="splash" id="splash"><div class="splash-circle">栖</div><div class="splash-poem">充满劳绩，然而人<br>诗意地栖居在这片大地上</div><div class="splash-by">—— 荷尔德林</div><div class="splash-en">Q I X I N &nbsp; F L O W</div></div>
-<div class="shell"><header><a class="brand" href="#home">栖心<em>Flow</em></a><div class="header-right"><button class="voice-pill" id="voice-settings"><span class="online"></span>温柔中文 · 声音</button><button class="round" data-action="favorites" aria-label="我的收藏">♡</button><button class="round history-btn" data-view="me" aria-label="练习记录">◷</button></div></header>
-<main><section class="view active" id="view-home"><div class="hero"><div class="portal" aria-hidden="true"></div><div class="eyebrow">A LITTLE CLOSER TO YOURSELF</div><h1>此刻，<br class="mobile-break">你想<em>靠近怎样的自己？</em></h1><form class="intention-box" id="intention-form"><input id="intention" aria-label="写下你的感受或期待" maxlength="500" placeholder="我想放下今天的疲惫，好好睡一觉……" required><button class="send" aria-label="定制我的冥想">↑</button></form><div class="eyebrow" style="font-size:8px;letter-spacing:1.6px">✧ 从一个小小的心愿开始</div><div class="suggestions"><button class="suggestion" data-prompt="想放下工作的紧绷，让自己放松下来">卸下工作疲惫</button><button class="suggestion" data-prompt="希望今晚放下思绪，安静地休息">安心睡个好觉</button><button class="suggestion" data-prompt="想对自己少一点苛责，多一点温柔">学会温柔待己</button><button class="suggestion" data-prompt="想找回专注，一次只做一件事">找回内心的秩序</button></div><div class="hero-foot">专属引导词 · 中文聆听 · 跟随你的节奏</div></div>
-<div class="section-head"><h2>为此刻的你<small>每一种感受，都值得被听见</small></h2><button class="pill-btn" data-view="library">探索全部 ↗</button></div><div class="cards" id="home-cards"></div><div class="daily"><article class="affirm-panel"><div class="eyebrow">DAILY AFFIRMATION · 每日心语</div><span class="quote-mark">“</span><blockquote id="daily-quote">不必急着盛开，<br>你有属于自己的时节。</blockquote><button class="link-btn" data-view="affirm">收下一句温柔的话 ↗</button></article><article class="breath-panel"><div><div class="eyebrow">ONE MINUTE OF PEACE</div><h3>先和自己，<br>一起呼吸。</h3><p id="breath-hint">不用做得更好，只要回到当下。</p><button class="link-btn" id="breath-start">开始一分钟练习 ↗</button></div><div class="breath-orb" id="breath-orb">呼吸</div></article></div></section>
-<section class="view" id="view-library"><div class="meditate-layout"><aside class="meditate-tabs" role="tablist" aria-label="冥想分类"><button class="active" data-med-tab="self" role="tab" aria-selected="true">自我关怀</button><button data-med-tab="sleep" role="tab" aria-selected="false">睡前安心</button><button data-med-tab="focus" role="tab" aria-selected="false">找回专注</button><button data-med-tab="stress" role="tab" aria-selected="false">减轻压力</button><button data-med-tab="grow" role="tab" aria-selected="false">慢慢成长</button></aside><div class="meditate-content"><div class="meditate-grid" id="meditate-grid"></div></div></div></section>
-<section class="view" id="view-affirm"><div class="affirm-stage"><div class="affirm-card"><span>TODAY'S LITTLE REMINDER</span><blockquote id="affirm-text"></blockquote><span>栖心 FLOW · 每日心语</span></div><div class="affirm-actions"><button class="pill-btn" id="prev-affirm">← 上一句</button><button class="primary" id="copy-affirm">复制这句心语 ↗</button><button class="pill-btn" id="next-affirm">下一句 →</button></div></div></section>
-<section class="view" id="view-me"><div class="page-intro"><div class="portal" style="width:80px;height:80px"></div></div><div class="stats"><div class="stat"><b id="stat-sessions">0</b><span>完成的练习</span></div><div class="stat"><b id="stat-saved">0</b><span>收藏的冥想</span></div><div class="stat"><b id="stat-custom">0</b><span>专属引导词</span></div></div><div class="tabs" id="me-tabs"><button class="active" data-me="custom">我的专属</button><button data-me="saved">我的收藏</button></div><div class="history" id="history"></div><p class="service-note">记录仅保存在本机浏览器，不会跨设备同步。<br><button class="link-btn" id="clear-data">清除本机记录</button></p></section></main><footer class="footer"><span>栖心 FLOW · 让内心，有处可栖。</span><span>原创正念陪伴 · 不替代专业诊疗　<button id="privacy">隐私与生成说明</button></span></footer></div>
-<div class="mini-player" id="mini-player"><button class="mini-play" id="mini-play" aria-label="播放或暂停">▶</button><div class="mini-details" id="open-player" role="button" tabindex="0"><small>YOUR QUIET MOMENT</small><b id="mini-title"></b></div><span class="mini-time" id="mini-time">0:00 / 5:00</span><button class="mini-close" id="mini-close" aria-label="关闭播放器">×</button></div>
-<nav class="dock" aria-label="主导航"><button class="active" data-view="home"><svg><use href="#home"/></svg>冥想</button><button data-explore="explore/"><svg><use href="#explore"/></svg>探索</button><button data-view="affirm"><svg><use href="#star"/></svg>心语</button><button data-view="me"><svg><use href="#user"/></svg>我的</button></nav>
-<section class="full-player" id="full-player" aria-label="冥想播放器"><div class="player-bg" id="player-bg"></div><div class="player-content"><div class="player-head"><button id="close-player" aria-label="收起播放器">‹</button><span>栖心 <em>Flow</em></span><button id="player-favorite" aria-label="收藏练习">♡</button></div><div class="player-phrase" id="player-phrase">让自己，慢慢安静下来。</div><button class="player-read" id="read-script">▤ 阅读完整引导词</button><div class="player-title" id="player-title"></div><div class="eyebrow" id="player-source" style="color:#d3dfc3"></div><input class="progress" id="progress" aria-label="播放进度" type="range" min="0" max="300" value="0"><div class="player-time"><span id="elapsed">0:00</span><span id="remaining">−5:00</span></div><div class="playback"><button id="repeat" aria-label="循环播放" aria-pressed="false">↻</button><button id="back" aria-label="后退十秒">↶<small>10</small></button><button class="big-play" id="big-play" aria-label="播放或暂停">▶</button><button id="forward" aria-label="前进十秒">↷<small>10</small></button><button id="ambient-toggle" aria-label="环境底音" aria-pressed="true">♫</button></div><div class="player-extra"><button id="copy-script">复制引导词 ↗</button><button id="voice-toggle" aria-pressed="true">人声已开启</button></div></div></section>
-<div class="overlay" id="overlay"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><button class="modal-close" id="modal-close" aria-label="关闭">×</button><div id="modal-body"></div></div></div><div class="toast" id="toast" role="status"></div><script src="app.js"></script>
-<script src="experience.js"></script>
-<script src="card-images.js"></script>
-<script src="visuals.js"></script>
-<script src="community.js"></script><script>
-/* 底部「探索」进入独立资源库页；其余 tab 为站内切换 */
-(function(){
-  document.querySelectorAll('.dock [data-explore]').forEach(function(b){
-    b.addEventListener('click',function(){ window.location.href=b.getAttribute('data-explore'); });
-  });
-  /* 支持从探索页用 #home / #community / #affirm / #me 直达对应 tab */
-  var h=(location.hash||'').replace('#','');
-  if(h && document.getElementById('view-'+h) && typeof go==='function'){
-    setTimeout(function(){ try{ go(h); }catch(e){} },80);
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1.0">
+<title>栖心 Flow · 诗意地栖居</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23486955'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' fill='%23eef4ec' font-family='serif'%3E%E6%A0%96%3C/text%3E%3C/svg%3E">
+
+<style>
+  :root{
+    /* 浅色自然系 —— 潮汐式暖纸白 + 鼠尾草绿 + 雾蓝 */
+    --bg:#F3F1EB;
+    --bg-soft:#ECE9E1;
+    --card:#FFFFFF;
+    --line:#E7E3D9;
+    --ink:#2C3330;
+    --ink-dim:#7D837C;
+    --ink-faint:#B0B5AC;
+    --sage:#8FAE9A;
+    --sage-deep:#6E8F7B;
+    --sage-tint:#EDF3EE;
+    --mist:#9DB8C4;
+    --mist-tint:#ECF2F4;
+    --clay:#D4A98C;
+    --clay-tint:#F7EFE8;
+    --shadow:0 10px 40px rgba(70,80,70,0.07);
+    --shadow-soft:0 4px 18px rgba(70,80,70,0.05);
+    /* 冥想夜色 */
+    --night:#151D30;
+    --night-2:#1C2640;
+    --night-line:#2B3756;
+    --night-ink:#EAEDEF;
+    --night-dim:#8E99B0;
   }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',system-ui,sans-serif;overflow:hidden;}
+  .serif{font-family:'Noto Serif SC',serif;}
+  .mono{font-family:ui-monospace,'SF Mono',Menlo,monospace;}
+  button{font-family:inherit;}
+
+  .view{display:none;height:100%;flex-direction:column;}
+  .view.active{display:flex;}
+
+  /* ===== 底部 Tab ===== */
+  .tabbar{
+    position:fixed;bottom:0;left:0;right:0;z-index:50;
+    display:none;justify-content:space-around;align-items:center;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(243,241,235,0.9);backdrop-filter:blur(20px);
+    border-top:1px solid var(--line);
+  }
+  .tabbar.show{display:flex;}
+  .tabbar button{
+    background:none;border:none;color:var(--ink-faint);cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:3px;
+    font-size:10px;padding:6px 14px;
+  }
+  .tabbar button.on{color:var(--sage-deep);}
+  .tabbar svg{width:22px;height:22px;}
+
+  .pad{padding:26px 22px 110px;overflow-y:auto;height:100%;}
+
+  /* ===== 首页 ===== */
+  .topline{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:26px;}
+  .brand{font-size:11px;letter-spacing:4px;color:var(--ink-dim);}
+  .brand b{color:var(--sage-deep);font-weight:500;}
+  .streak{font-size:12px;color:var(--ink-dim);}
+  .streak b{color:var(--clay);font-size:18px;font-weight:600;margin-right:2px;}
+
+  .greet{font-size:13px;color:var(--ink-dim);margin-bottom:4px;}
+  .greet-title{font-family:'Noto Serif SC',serif;font-size:24px;font-weight:600;line-height:1.4;margin-bottom:22px;}
+
+  .hero{
+    background:var(--card);border-radius:26px;
+    padding:26px 24px;margin-bottom:18px;position:relative;overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .hero canvas{width:100%;height:80px;display:block;opacity:0.75;margin:6px 0 4px;}
+  .hero-label{font-size:10px;letter-spacing:3px;color:var(--sage-deep);margin-bottom:10px;}
+  .hero-day{font-family:'Noto Serif SC',serif;font-size:25px;font-weight:600;line-height:1.35;margin:6px 0;}
+  .hero-sub{font-size:13px;color:var(--ink-dim);margin-bottom:16px;line-height:1.6;}
+  .hero-meta{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap;}
+  .chip{font-size:11px;color:var(--ink-dim);background:var(--bg);padding:6px 12px;border-radius:100px;}
+  .chip.g{color:var(--sage-deep);background:var(--sage-tint);}
+  .chip.a{color:#A87A52;background:var(--clay-tint);}
+  .cta{
+    width:100%;padding:16px;border-radius:16px;border:none;cursor:pointer;
+    background:var(--sage-deep);color:#fff;font-size:15px;font-weight:500;
+    letter-spacing:2px;box-shadow:0 8px 20px rgba(110,143,123,0.28);
+  }
+  .cta:active{transform:scale(0.98);}
+  .cta.ghost{background:transparent;color:var(--sage-deep);box-shadow:none;border:1px solid var(--line);}
+
+  .section-title{font-size:11px;letter-spacing:3px;color:var(--ink-dim);margin:26px 0 14px;}
+  .stats-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .stat{background:var(--card);border-radius:20px;padding:18px;box-shadow:var(--shadow-soft);}
+  .stat .num{font-family:'Noto Serif SC',serif;font-size:24px;color:var(--sage-deep);}
+  .stat .lbl{font-size:11px;color:var(--ink-dim);margin-top:4px;}
+
+  .quick-card{
+    background:var(--mist-tint);border-radius:20px;padding:18px 20px;margin-bottom:10px;
+    display:flex;align-items:center;gap:14px;cursor:pointer;
+  }
+  .quick-card .ic{
+    width:42px;height:42px;border-radius:50%;background:#fff;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .quick-card .t{font-size:14px;font-weight:500;}
+  .quick-card .s{font-size:11px;color:var(--ink-dim);margin-top:3px;}
+
+  /* ===== 30天列表 ===== */
+  .week-block{margin-bottom:26px;}
+  .week-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;}
+  .week-name{font-family:'Noto Serif SC',serif;font-size:16px;}
+  .week-theme{font-size:11px;color:var(--ink-dim);}
+  .day-item{
+    display:flex;align-items:center;gap:14px;
+    background:var(--card);border-radius:18px;
+    padding:15px;margin-bottom:9px;cursor:pointer;box-shadow:var(--shadow-soft);
+  }
+  .day-item.done .day-num{background:var(--sage);color:#fff;}
+  .day-item.locked{opacity:0.4;}
+  .day-num{
+    width:40px;height:40px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--bg);font-size:13px;color:var(--ink-dim);
+  }
+  .day-info{flex:1;min-width:0;}
+  .day-title{font-size:14px;font-weight:500;}
+  .day-sub{font-size:11px;color:var(--ink-dim);margin-top:3px;}
+  .day-arrow{color:var(--ink-faint);font-size:18px;}
+
+  /* ===== 档案 ===== */
+  .archive-empty{text-align:center;padding:70px 24px;color:var(--ink-dim);}
+  .archive-empty .big{font-family:'Noto Serif SC',serif;font-size:19px;color:var(--ink);margin-bottom:10px;}
+  .anchor-item{background:var(--card);border-radius:18px;padding:17px 18px;margin-bottom:11px;box-shadow:var(--shadow-soft);}
+  .anchor-item .d{font-size:11px;color:var(--sage-deep);letter-spacing:2px;margin-bottom:7px;}
+  .anchor-item .t{font-family:'Noto Serif SC',serif;font-size:15px;line-height:1.7;}
+
+  /* ===== 设备 ===== */
+  .device-card{
+    background:var(--card);border-radius:24px;
+    padding:34px 26px;text-align:center;margin-bottom:16px;box-shadow:var(--shadow);
+  }
+  .device-title{font-family:'Noto Serif SC',serif;font-size:19px;margin:10px 0;}
+  .device-desc{font-size:12px;color:var(--ink-dim);line-height:1.9;}
+  .device-bars{display:flex;gap:6px;justify-content:center;margin:20px 0;align-items:center;}
+  .device-bars span{width:4px;background:var(--line);border-radius:2px;animation:pulse 1.4s ease-in-out infinite;}
+  .device-bars span:nth-child(1){height:14px;}.device-bars span:nth-child(2){height:24px;animation-delay:.2s;}
+  .device-bars span:nth-child(3){height:18px;animation-delay:.4s;}.device-bars span:nth-child(4){height:28px;animation-delay:.6s;}
+  .device-bars span:nth-child(5){height:12px;animation-delay:.8s;}
+  @keyframes pulse{0%,100%{opacity:.4;}50%{opacity:1;background:var(--sage);}}
+
+  /* ============================================================
+     Onboarding 问卷
+     ============================================================ */
+  #view-onb{background:var(--bg);}
+  .onb-wrap{height:100%;display:flex;flex-direction:column;padding:28px 24px 24px;overflow-y:auto;}
+  .onb-progress{display:flex;gap:6px;margin-bottom:22px;}
+  .onb-progress i{height:3px;flex:1;border-radius:2px;background:var(--line);transition:background .4s;}
+  .onb-progress i.on{background:var(--sage-deep);}
+  .onb-step{display:none;flex:1;flex-direction:column;min-height:calc(100vh - 52px);animation:fadeUp .5s ease;}
+  .onb-step.show{display:flex;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  .onb-kicker{font-size:10px;letter-spacing:3px;color:var(--sage-deep);margin-bottom:10px;}
+  .onb-q{font-family:'Noto Serif SC',serif;font-size:22px;font-weight:600;line-height:1.45;margin-bottom:5px;}
+  .onb-qsub{font-size:12px;color:var(--ink-dim);line-height:1.6;margin-bottom:18px;}
+  .onb-options{display:flex;flex-direction:column;gap:9px;flex:1;}
+  .onb-opt{
+    background:var(--card);border:1.5px solid transparent;border-radius:16px;
+    padding:12px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;
+    box-shadow:var(--shadow-soft);transition:all .25s;min-height:56px;
+  }
+  .onb-opt .em{font-size:19px;width:26px;text-align:center;flex-shrink:0;}
+  .onb-opt .tx{flex:1;}
+  .onb-opt .tx b{display:block;font-size:14px;font-weight:500;margin-bottom:2px;}
+  .onb-opt .tx span{font-size:11px;color:var(--ink-dim);line-height:1.4;}
+  .onb-opt.sel{border-color:var(--sage);background:var(--sage-tint);}
+  .onb-opt.sel .check{opacity:1;transform:scale(1);}
+  .check{
+    width:20px;height:20px;border-radius:50%;background:var(--sage-deep);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:11px;
+    opacity:0;transform:scale(0.5);transition:all .25s;flex-shrink:0;
+  }
+  .onb-foot{margin-top:18px;}
+  .onb-foot .cta:disabled{background:var(--line);color:var(--ink-faint);box-shadow:none;}
+  .onb-skip{display:block;text-align:center;margin-top:12px;font-size:12px;color:var(--ink-faint);background:none;border:none;cursor:pointer;width:100%;}
+
+  /* 欢迎页呼吸光球 */
+  .onb-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+  .onb-orb{
+    position:relative;
+    width:150px;height:150px;border-radius:50%;margin-bottom:30px;
+    background:radial-gradient(circle at 38% 35%,#DCEAE0,#B9CFD6 60%,#A4C0CB);
+    box-shadow:0 16px 50px rgba(140,170,150,0.35);
+    animation:breathe 8s ease-in-out infinite;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;letter-spacing:4px;color:#46605A;
+  }
+  @keyframes breathe{
+    0%,100%{transform:scale(0.8);box-shadow:0 12px 36px rgba(140,170,150,0.25);}
+    50%{transform:scale(1.12);box-shadow:0 24px 70px rgba(140,170,150,0.45);}
+  }
+  .orb-word{position:absolute;letter-spacing:4px;}
+  .w-in{animation:wordIn 8s ease-in-out infinite;}
+  .w-out{animation:wordOut 8s ease-in-out infinite;}
+  @keyframes wordIn{0%{opacity:0;}8%{opacity:1;}42%{opacity:1;}50%{opacity:0;}100%{opacity:0;}}
+  @keyframes wordOut{0%{opacity:0;}50%{opacity:0;}58%{opacity:1;}92%{opacity:1;}100%{opacity:0;}}
+  .onb-hero h1{font-family:'Noto Serif SC',serif;font-size:26px;font-weight:600;line-height:1.45;margin-bottom:12px;}
+  .onb-hero p{font-size:12px;color:var(--ink-dim);line-height:1.9;max-width:280px;}
+
+  /* 推荐结果 */
+  .rec-orb{
+    width:110px;height:110px;border-radius:50%;margin:0 auto 26px;
+    background:var(--sage-tint);display:flex;align-items:center;justify-content:center;
+    font-family:'Noto Serif SC',serif;font-size:34px;color:var(--sage-deep);
+  }
+  .rec-day{font-family:'Noto Serif SC',serif;font-size:27px;font-weight:600;text-align:center;line-height:1.4;margin-bottom:12px;}
+  .rec-reason{font-size:13px;color:var(--ink-dim);line-height:2;text-align:center;margin-bottom:14px;}
+  .rec-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:30px;}
+
+  /* ============================================================
+     冥想进行页（浅色 · 与全站统一）
+     ============================================================ */
+  #view-session{background:linear-gradient(180deg,#F4F2EC 0%,#EAF0EB 48%,#E7EFF1 100%);color:var(--ink);}
+  #view-session .pad{padding:22px 20px 100px;display:flex;flex-direction:column;height:100%;}
+  .session-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+  .session-top .back{background:none;border:none;color:var(--ink-dim);font-size:14px;cursor:pointer;}
+  .session-top .timer{font-family:ui-monospace,monospace;font-size:13px;color:var(--ink-dim);}
+  .breath-type-tag{font-size:10px;color:var(--sage-deep);letter-spacing:2px;}
+
+  .breath-stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;min-height:200px;}
+  .breath-orb{
+    width:172px;height:172px;border-radius:50%;
+    background:radial-gradient(circle at 38% 32%,rgba(255,255,255,0.95),rgba(196,217,203,0.6) 55%,rgba(157,184,196,0.38) 78%);
+    border:1.5px solid rgba(143,174,154,0.45);
+    display:flex;align-items:center;justify-content:center;
+    transition:transform 1.2s cubic-bezier(0.4,0,0.6,1);will-change:transform;
+    box-shadow:0 18px 50px rgba(120,150,130,0.28);
+  }
+  .breath-orb-inner{text-align:center;color:var(--sage-deep);font-size:13px;letter-spacing:4px;}
+  .breath-orb-inner .count{font-family:ui-monospace,monospace;font-size:36px;display:block;margin-top:4px;color:#3C4A40;}
+
+  .eeg-wrap{
+    background:rgba(255,255,255,0.72);border:1px solid var(--line);border-radius:16px;
+    padding:11px 14px;margin:10px 0;box-shadow:var(--shadow-soft);
+  }
+  .eeg-wrap .lbl{font-size:9px;letter-spacing:2px;color:var(--ink-dim);margin-bottom:4px;display:flex;justify-content:space-between;}
+  .eeg-wrap .lbl .relax{color:var(--sage-deep);}
+  #eegCanvas{width:100%;height:54px;display:block;}
+
+  /* ===== 身体扫描：静坐人形 + 光点 + 轨迹 ===== */
+  .scan-wrap{
+    display:flex;gap:15px;align-items:center;
+    background:rgba(255,255,255,0.72);border:1px solid var(--line);border-radius:18px;
+    padding:10px 16px;margin:6px 0;box-shadow:var(--shadow-soft);
+  }
+  .scan-figure{width:70px;height:116px;flex-shrink:0;}
+  .scan-figure svg{width:100%;height:100%;overflow:visible;}
+  .figure-line{fill:none;stroke:#C6CCBE;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  .scan-dot{fill:#DDE0D5;transition:fill .6s ease;}
+  .scan-dot.visited{fill:#B5CDBE;}
+  .scan-dot.active{fill:var(--sage-deep);animation:dotPulse 2.6s ease-in-out infinite;}
+  @keyframes dotPulse{
+    0%,100%{filter:drop-shadow(0 0 1px rgba(110,143,123,0.3));}
+    50%{filter:drop-shadow(0 0 9px rgba(110,143,123,0.95));}
+  }
+  .scan-info{flex:1;min-width:0;}
+  .scan-kicker{font-size:9px;letter-spacing:2px;color:var(--ink-faint);margin-bottom:3px;}
+  .scan-part{font-family:'Noto Serif SC',serif;font-size:19px;color:var(--ink);line-height:1.2;}
+  .scan-part small{font-size:11px;color:var(--ink-dim);font-family:'Noto Sans SC',sans-serif;margin-left:8px;letter-spacing:1px;}
+  .scan-track{display:flex;gap:5px;margin-top:9px;}
+  .scan-track i{width:6px;height:6px;border-radius:50%;background:#E2E4DA;transition:background .5s;}
+  .scan-track i.on{background:var(--sage-deep);}
+
+  .script-box{
+    background:rgba(255,255,255,0.8);border-left:2px solid var(--sage-deep);
+    border-radius:0 14px 14px 0;padding:15px 17px;margin:8px 0;min-height:92px;
+    box-shadow:var(--shadow-soft);
+  }
+  .script-text{font-family:'Noto Serif SC',serif;font-size:15px;line-height:1.85;color:var(--ink);white-space:pre-line;}
+  .script-hint{font-size:10px;color:var(--ink-dim);margin-top:9px;letter-spacing:1px;}
+
+  .controls{display:flex;gap:10px;margin-top:8px;}
+  .ctrl-btn{
+    flex:1;padding:14px;border-radius:14px;border:1px solid var(--line);
+    background:#fff;color:var(--ink);font-size:13px;cursor:pointer;box-shadow:var(--shadow-soft);
+  }
+  .ctrl-btn.primary{background:var(--sage-deep);color:#fff;border:none;font-weight:500;box-shadow:0 8px 20px rgba(110,143,123,0.28);}
+
+  /* ===== 结束弹窗（浅色） ===== */
+  .done-overlay{
+    position:fixed;inset:0;background:linear-gradient(180deg,#F4F2EC 0%,#EAF0EB 55%,#E7EFF1 100%);z-index:100;
+    display:none;flex-direction:column;align-items:center;justify-content:center;padding:32px;
+  }
+  .done-overlay.show{display:flex;animation:fadeUp .5s ease;}
+  .done-overlay .kicker{font-size:10px;letter-spacing:3px;color:var(--sage-deep);margin-bottom:14px;}
+  .done-overlay h2{font-family:'Noto Serif SC',serif;font-size:25px;font-weight:600;margin-bottom:14px;text-align:center;line-height:1.5;color:var(--ink);}
+  .done-overlay p{font-size:13px;color:var(--ink-dim);line-height:1.9;text-align:center;margin-bottom:22px;}
+  .done-overlay input{
+    width:100%;max-width:330px;background:#fff;border:1px solid var(--line);
+    color:var(--ink);padding:14px 16px;border-radius:14px;font-size:13px;box-shadow:var(--shadow-soft);
+  }
+  .done-overlay input::placeholder{color:var(--ink-faint);}
+  .done-overlay input:focus{outline:none;border-color:var(--sage);}
+  .done-overlay .cta{max-width:330px;margin-top:14px;}
+
+  /* ===== 开屏 Splash ===== */
+  .splash{
+    position:fixed;inset:0;z-index:200;background:var(--bg);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:30px;transition:opacity .9s ease;cursor:pointer;
+  }
+  .splash.hide{opacity:0;pointer-events:none;}
+  .splash-circle{
+    width:120px;height:120px;border-radius:50%;margin-bottom:34px;
+    background:radial-gradient(circle at 38% 35%,#DCEAE0,#B9CFD6 60%,#A4C0CB);
+    box-shadow:0 16px 50px rgba(140,170,150,0.35);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Noto Serif SC',serif;font-size:52px;color:#46605A;
+    animation:breathe 8s ease-in-out infinite;
+  }
+  .splash-poem{
+    font-family:'Noto Serif SC',serif;font-size:16px;line-height:2.2;
+    color:#56605A;text-align:center;max-width:300px;
+    animation:fadeUp 1.4s ease .3s both;
+  }
+  .splash-by{font-size:11px;color:#7D837C;margin-top:16px;letter-spacing:2px;animation:fadeUp 1.4s ease .6s both;}
+  .splash-en{
+    position:absolute;bottom:42px;left:0;right:0;text-align:center;
+    font-size:10px;letter-spacing:7px;color:var(--ink-faint);
+  }
+</style>
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://modestomckoan.github.io/roost/upgrade.css"><link rel="stylesheet" href="https://modestomckoan.github.io/roost/features.css">
+<style id="v5-intro">
+/* ===== 恢复开屏（覆盖 upgrade.css 的隐藏） ===== */
+.splash{display:flex!important;}
+.splash-circle{position:relative;}
+.splash-circle::before,.splash-circle::after{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  border:1px solid rgba(143,174,154,0.5);
+  animation:ripple 5s ease-out infinite;pointer-events:none;
+}
+.splash-circle::after{animation-delay:2.5s;}
+@keyframes ripple{
+  0%{transform:scale(1);opacity:0.55;}
+  100%{transform:scale(1.95);opacity:0;}
+}
+
+/* ===== 全站流动环境背景（缓慢漂移的自然光色） ===== */
+.view{position:relative;z-index:1;}
+#ambientBg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+#ambientBg i{position:absolute;display:block;border-radius:50%;filter:blur(52px);will-change:transform;}
+#ambientBg i:nth-child(1){
+  width:62vmax;height:62vmax;left:-12vmax;top:-15vmax;
+  background:radial-gradient(circle,rgba(185,207,191,0.52),rgba(185,207,191,0) 66%);
+  animation:drift1 27s ease-in-out infinite alternate;
+}
+#ambientBg i:nth-child(2){
+  width:56vmax;height:56vmax;right:-14vmax;top:10vmax;
+  background:radial-gradient(circle,rgba(195,214,221,0.48),rgba(195,214,221,0) 66%);
+  animation:drift2 34s ease-in-out infinite alternate;
+}
+#ambientBg i:nth-child(3){
+  width:48vmax;height:48vmax;left:8vmax;bottom:-15vmax;
+  background:radial-gradient(circle,rgba(232,213,195,0.44),rgba(232,213,195,0) 66%);
+  animation:drift3 40s ease-in-out infinite alternate;
+}
+@keyframes drift1{0%{transform:translate(0,0) scale(1);}100%{transform:translate(11vmax,8vmax) scale(1.14);}}
+@keyframes drift2{0%{transform:translate(0,0) scale(1.08);}100%{transform:translate(-9vmax,11vmax) scale(0.94);}}
+@keyframes drift3{0%{transform:translate(0,0) scale(1);}100%{transform:translate(8vmax,-9vmax) scale(1.12);}}
+/* 让冥想页与结束弹窗透出流动色 */
+#view-session{background:linear-gradient(180deg,rgba(244,242,236,0.82) 0%,rgba(234,240,235,0.8) 48%,rgba(231,239,241,0.82) 100%);}
+.done-overlay{background:linear-gradient(180deg,rgba(244,242,236,0.94) 0%,rgba(234,240,235,0.94) 55%,rgba(231,239,241,0.94) 100%);}
+
+/* ===== 欢迎页光球涟漪 ===== */
+.onb-orb::before,.onb-orb::after{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  border:1px solid rgba(143,174,154,0.55);
+  animation:ripple 4.5s ease-out infinite;pointer-events:none;
+}
+.onb-orb::after{animation-delay:2.25s;}
+
+/* ===== 问卷选项逐个浮入 + 勾选弹跳 ===== */
+.onb-step.show .onb-kicker,.onb-step.show .onb-q,.onb-step.show .onb-qsub{
+  animation:fadeUp .55s ease both;
+}
+.onb-step.show .onb-qsub{animation-delay:.06s;}
+.onb-opt{transition:background .25s,border-color .25s,box-shadow .25s;}
+.onb-step.show .onb-opt{animation:optIn .55s cubic-bezier(0.22,1,0.36,1) both;}
+.onb-step.show .onb-opt:nth-child(1){animation-delay:.08s;}
+.onb-step.show .onb-opt:nth-child(2){animation-delay:.15s;}
+.onb-step.show .onb-opt:nth-child(3){animation-delay:.22s;}
+.onb-step.show .onb-opt:nth-child(4){animation-delay:.29s;}
+.onb-step.show .onb-opt:nth-child(5){animation-delay:.36s;}
+@keyframes optIn{
+  from{opacity:0;transform:translateY(16px) scale(0.98);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+.onb-opt.sel{border-color:var(--sage);background:var(--sage-tint);box-shadow:0 8px 24px rgba(143,174,154,0.2);}
+.onb-opt.sel .check{opacity:1;animation:checkPop .38s cubic-bezier(.34,1.56,.64,1);}
+@keyframes checkPop{
+  0%{transform:scale(0);}
+  70%{transform:scale(1.3);}
+  100%{transform:scale(1);}
+}
+.check{opacity:0;}
+
+/* ===== 每日正念一句 ===== */
+.daily-card{
+  background:linear-gradient(135deg,rgba(255,255,255,0.92),rgba(237,243,238,0.85));
+  border:1px solid var(--line);border-radius:22px;
+  padding:17px 19px;margin:18px 0 4px;display:flex;gap:14px;align-items:center;
+  box-shadow:var(--shadow-soft);
+}
+.daily-mark{
+  width:40px;height:40px;border-radius:50%;background:#fff;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-soft);
+}
+.daily-quote{font-size:15px;line-height:1.7;color:var(--ink);}
+.daily-date{font-size:10px;letter-spacing:2px;color:var(--ink-faint);margin-top:6px;}
+
+@media (max-height:760px){
+  .onb-wrap{padding:20px 22px 18px;}
+  .onb-progress{margin-bottom:14px;}
+  .onb-qsub{margin-bottom:12px;}
+  .onb-options{gap:7px;}
+  .onb-opt{min-height:50px;padding:10px 14px;}
+  .onb-foot{margin-top:12px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  #ambientBg i,.splash-circle::before,.splash-circle::after,.onb-orb::before,.onb-orb::after{animation:none;}
+}
+</style><link rel="stylesheet" href="https://modestomckoan.github.io/roost/sound-studio.css"><link rel="stylesheet" href="https://modestomckoan.github.io/roost/course-tracks.css"><link rel="stylesheet" href="explore/qixin-explore.css"><script>
+/* 根应用：把相对的声音/语音目录请求映射到 explore/ 子目录 */
+(function(){
+  var _f = window.fetch;
+  window.fetch = function(input, init){
+    try{
+      var u = (typeof input==='string') ? input : (input && input.url) || input;
+      if(u==='audio/catalog.json' || u==='./audio/catalog.json'){
+        if(typeof input==='string') input='explore/audio/catalog.json';
+      } else if(u==='voice/catalog.json' || u==='./voice/catalog.json'){
+        if(typeof input==='string') input='explore/voice/catalog.json';
+      }
+    }catch(e){}
+    return _f.call(this, input, init);
+  };
 })();
-</script></body></html>
+</script>
+</head>
+<body>
+
+<!-- ========== 全站流动环境背景 ========== -->
+<div id="ambientBg" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<!-- ========== 开屏 ========== -->
+<div class="splash" id="splash">
+  <div class="splash-circle">栖</div>
+  <div class="splash-poem">
+    充满劳绩，然而人<br>诗意地栖居在这片大地上
+  </div>
+  <div class="splash-by">—— 荷尔德林</div>
+  <div class="splash-en">Q I X I N</div>
+</div>
+
+<!-- ========== Onboarding 首次咨询 ========== -->
+<section class="view active" id="view-onb">
+  <div class="onb-wrap">
+    <div class="onb-progress" id="onbProgress" style="display:none;">
+      <i></i><i></i><i></i><i></i>
+    </div>
+
+    <!-- 欢迎 -->
+    <div class="onb-step show" id="onb-0">
+      <div class="onb-hero">
+        <div class="onb-orb">
+          <span class="orb-word w-in">吸气</span>
+          <span class="orb-word w-out">呼气</span>
+        </div>
+        <h1>先了解你，<br>再开始放松</h1>
+        <p>四个问题，大约 30 秒。<br>我们会为你推荐最适合今天状态的那一课。</p>
+      </div>
+      <div class="onb-foot">
+        <button class="cta" onclick="onbNext(1)">开始</button>
+      </div>
+    </div>
+
+    <!-- Q1 此刻状态 -->
+    <div class="onb-step" id="onb-1">
+      <div class="onb-kicker">问题 1 / 4</div>
+      <div class="onb-q">此刻，你的状态是？</div>
+      <div class="onb-qsub">不用想太多，选最接近的一个</div>
+      <div class="onb-options" data-q="state"></div>
+      <div class="onb-foot">
+        <button class="cta" disabled onclick="onbNext(2)">继续</button>
+        <button class="onb-skip" onclick="finishOnboarding(true)">跳过，直接开始</button>
+      </div>
+    </div>
+
+    <!-- Q2 目标 -->
+    <div class="onb-step" id="onb-2">
+      <div class="onb-kicker">问题 2 / 4</div>
+      <div class="onb-q">你最想改善什么？</div>
+      <div class="onb-qsub">30 天后，你希望自己有什么变化</div>
+      <div class="onb-options" data-q="goal"></div>
+      <div class="onb-foot">
+        <button class="cta" disabled onclick="onbNext(3)">继续</button>
+      </div>
+    </div>
+
+    <!-- Q3 时间 -->
+    <div class="onb-step" id="onb-3">
+      <div class="onb-kicker">问题 3 / 4</div>
+      <div class="onb-q">每天愿意留给自己多久？</div>
+      <div class="onb-qsub">诚实一点，能坚持的时间才是好时间</div>
+      <div class="onb-options" data-q="time"></div>
+      <div class="onb-foot">
+        <button class="cta" disabled onclick="onbNext(4)">继续</button>
+      </div>
+    </div>
+
+    <!-- Q4 经验 -->
+    <div class="onb-step" id="onb-4">
+      <div class="onb-kicker">问题 4 / 4</div>
+      <div class="onb-q">你之前冥想过吗？</div>
+      <div class="onb-qsub">这决定我们从哪里开始教你</div>
+      <div class="onb-options" data-q="exp"></div>
+      <div class="onb-foot">
+        <button class="cta" disabled onclick="showRecommendation()">看看为我推荐的课</button>
+      </div>
+    </div>
+
+    <!-- 推荐结果 -->
+    <div class="onb-step" id="onb-5">
+      <div class="onb-hero" style="justify-content:flex-start;padding-top:30px;">
+        <div class="rec-orb" id="recOrb">1</div>
+        <div class="rec-day" id="recTitle"></div>
+        <div class="rec-reason" id="recReason"></div>
+        <div class="rec-tags" id="recTags"></div>
+      </div>
+      <div class="onb-foot">
+        <button class="cta" onclick="startRecommended()">开始这一课</button>
+        <button class="onb-skip" onclick="enterAppFromDay1()">我想从 Day 1 按顺序来</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 首页 ========== -->
+<section class="view" id="view-home">
+  <div class="pad">
+    <div class="topline">
+      <div class="brand">栖心 <b>Flow</b></div>
+      <div class="streak"><b id="streakNum">0</b>天连续</div>
+    </div>
+    <div class="greet" id="greetText">欢迎回来</div>
+    <div class="greet-title" id="greetTitle">把这一刻，轻轻还给自己。</div>
+
+    <div class="hero">
+      <div class="hero-label" id="heroLabel">为你推荐</div>
+      <div class="hero-day serif" id="homeDayTitle">Day 1 · 第一次着陆</div>
+      <div class="hero-sub" id="homeDaySub"></div>
+      <canvas id="homeWave"></canvas>
+      <div class="hero-meta">
+        <span class="chip g" id="homeBreathTag"></span>
+        <span class="chip" id="homeDurTag"></span>
+      </div>
+      <button class="cta" onclick="startSession(homeRecommendedDay)">开始今日练习</button>
+    </div>
+
+    <div class="daily-card">
+      <div class="daily-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E8F7B" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.2 5.2l1.7 1.7M17.1 17.1l1.7 1.7M18.8 5.2l-1.7 1.7M6.9 17.1l-1.7 1.7"/>
+        </svg>
+      </div>
+      <div class="daily-body">
+        <div class="daily-quote serif" id="dailyQuote"></div>
+        <div class="daily-date" id="dailyDate"></div>
+      </div>
+    </div>
+
+    <div class="home-banner"><span>30 DAYS · A LITTLE MORE PRESENT</span><p>不必清空念头，也不必追求一个分数。<br>在呼吸与声音之间，练习一次次回来。</p><button class="text-btn" onclick="go('sounds')">探索声音花园 ↗</button></div><div class="section-title">适合此刻的练习</div>
+    <div class="quick-card" onclick="startSession(8)">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6E8F7B" stroke-width="1.6"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg></div>
+      <div><div class="t">晚间安住 · 身体觉察</div><div class="s">16 分钟 · 从呼吸回到身体</div></div>
+    </div>
+    <div class="quick-card" onclick="startSession(6)">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6E8F7B" stroke-width="1.6"><path d="M12 2v6m0 8v6M2 12h6m8 0h6"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div><div class="t">肩颈松绑</div><div class="s">15 分钟 · 觉察肩颈与全身</div></div>
+    </div>
+
+    <div class="section-title">本周状态</div>
+    <div class="stats-row">
+      <div class="stat"><div class="num" id="statDone">0 / 30</div><div class="lbl">已完成练习</div></div>
+      <div class="stat"><div class="num" id="statMin">0</div><div class="lbl">累计分钟</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 30天计划 ========== -->
+<section class="view" id="view-program">
+  <div class="pad">
+    <div class="topline"><div class="brand">30天 · 循序渐进</div></div>
+    <h1 class="page-title serif">30 天，慢慢靠近自己</h1><p class="intro">从 15 到 20 分钟，每一天接续前一天。包含呼吸、全身扫描、主题练习与安静留白。所有课程均可自由选择。</p><div id="programList"></div>
+  </div>
+</section>
+
+<!-- ========== 冥想进行 ========== -->
+<section class="view" id="view-session">
+  <div class="pad">
+    <div class="session-top">
+      <button class="back" onclick="quitSession()">‹ 退出</button>
+      <div class="timer mono" id="sessionTimer">00:00</div>
+    </div>
+    <div class="breath-type-tag" id="sessionBreathTag"></div>
+
+    <div class="breath-stage">
+      <div class="breath-orb" id="breathOrb">
+        <div class="breath-orb-inner">
+          <span id="breathPhase">准备</span>
+          <span class="count" id="breathCount">·</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="eeg-wrap">
+      <div class="lbl"><span>闭环演示 · 模拟脑电</span><span class="relax" id="relaxVal">放松度 --</span></div>
+      <canvas id="eegCanvas"></canvas>
+    </div>
+
+    <div class="scan-wrap">
+      <div class="scan-figure">
+        <svg viewBox="0 0 70 100">
+          <g class="figure-line">
+            <circle cx="35" cy="13" r="8.5"/>
+            <line x1="35" y1="21.5" x2="35" y2="62"/>
+            <path d="M23 31 Q35 26.5 47 31"/>
+            <path d="M24 33 Q19 50 28.5 63"/>
+            <path d="M46 33 Q51 50 41.5 63"/>
+            <path d="M11 80 Q35 64 59 80 Q55 90 35 90 Q15 90 11 80 Z"/>
+            <path d="M23 80 Q35 74 47 80"/>
+          </g>
+          <circle class="scan-dot" data-route="head" cx="35" cy="5" r="3.4"/>
+          <circle class="scan-dot" data-route="face" cx="35" cy="13" r="3.4"/>
+          <circle class="scan-dot" data-route="neck" cx="35" cy="23" r="3.4"/>
+          <circle class="scan-dot" data-route="shoulder" cx="35" cy="31" r="3.4"/>
+          <circle class="scan-dot" data-route="chest" cx="35" cy="39" r="3.4"/>
+          <circle class="scan-dot" data-route="heart" cx="35" cy="45" r="3.4"/>
+          <circle class="scan-dot" data-route="belly" cx="35" cy="53" r="3.4"/>
+          <circle class="scan-dot" data-route="hand" cx="35" cy="63" r="3.4"/>
+          <circle class="scan-dot" data-route="hip" cx="35" cy="72" r="3.4"/>
+          <circle class="scan-dot" data-route="foot" cx="35" cy="83" r="3.4"/>
+        </svg>
+      </div>
+      <div class="scan-info">
+        <div class="scan-kicker">BODY SCAN · 身体扫描</div>
+        <div class="scan-part" id="currentPart">准备<small id="scanCount"></small></div>
+        <div class="scan-track" id="scanTrack">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+    </div>
+
+    <progress id="courseProgress" value="0" max="100" aria-label="课程进度"></progress><div class="script-box">
+      <div class="script-text serif" id="scriptText">点击开始</div>
+      <div class="script-hint" id="scriptHint">引导语将自动朗读</div>
+    </div>
+
+    <div class="session-settings"><div class="setting"><label for="voiceSelect">引导声音</label><select id="voiceSelect"></select><button class="text-btn" onclick="previewVoice()">试听</button></div><div class="setting"><label for="voiceVol">人声音量</label><input id="voiceVol" type="range" min="0" max="1" step="0.05" value="0.85"></div><div class="setting"><label for="ambientVol">音景音量</label><input id="ambientVol" type="range" min="0" max="1" step="0.05" value="0.35"></div><div class="setting"><label for="sceneSelect">背景音景</label><select id="sceneSelect"></select></div><div class="setting"><label><input type="checkbox" id="naturalBreath"> 自然呼吸（不跟拍）</label><label><input type="checkbox" id="closedLoop"> 模拟闭环音量调节</label></div><p id="voiceStatus" role="status">语音准备中</p><p id="loopStatus">未连接脑电设备 · 当前数据仅用于演示，不计入个人效果。</p></div><div class="controls">
+      <button class="ctrl-btn primary" id="playBtn" onclick="togglePlay()">开始</button>
+      <button class="ctrl-btn" onclick="toggleSound()" id="soundBtn">环境音：关</button>
+    </div>
+  <details class="transcript"><summary>查看本课完整引导词与时间安排</summary><div id="transcriptText"></div></details></div>
+</section>
+
+<!-- ========== 舒适档案 ========== -->
+<section class="view" id="view-archive">
+  <div class="pad">
+    <div class="topline"><div class="brand">舒适档案</div></div>
+    <div class="section-title">你记录过的舒适锚点</div>
+    <div id="anchorList"></div>
+  </div>
+</section>
+
+<!-- ========== 设备 ========== -->
+<section class="view" id="view-device">
+  <div class="pad">
+    <div class="topline"><div class="brand">脑机接口 · 设备</div></div>
+    <div class="device-card">
+      <div style="margin-top:6px;">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#6E8F7B" stroke-width="1.5">
+          <path d="M4 12c2-4 4-4 6 0s4 4 6 0 4-4 4-4"/><circle cx="4" cy="12" r="1.5" fill="#6E8F7B"/>
+        </svg>
+      </div>
+      <div class="device-title serif">耳机待接入</div>
+      <div class="device-desc">
+        你的脑机接口耳机还在开发中。<br>此版本先用模拟脑电数据走通完整闭环。<br><br>
+        硬件就绪后，通过蓝牙连接，<br>实时读取 α / θ / β 频段功率，<br>还需要验证信号质量与个体校准；当前不能判断真实放松程度。
+      </div>
+      <div class="device-bars"><span></span><span></span><span></span><span></span><span></span></div>
+      <div style="font-size:10px;color:var(--ink-faint);letter-spacing:2px;">WAITING FOR HARDWARE</div>
+    </div>
+    <div class="device-card" style="text-align:left;">
+      <div style="font-size:12px;color:var(--ink-dim);line-height:2.1;">
+        <div style="color:var(--sage-deep);font-size:11px;letter-spacing:2px;margin-bottom:8px;">硬件就绪后将解锁</div>
+        · 经验证的脑电特征与个体化基线<br>
+        · 信号质量与伪迹检测（待硬件验证）<br>
+        · 在用户允许的范围内调整音景音量<br>
+        · 原始信号与主观感受分开记录
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-sounds"><div class="pad"><div class="topline"><div class="brand">栖心 Flow · 声音花园</div><span class="chip g">本地音频 · 可混音</span></div><h1 class="page-title serif">让声音，成为你的岸。</h1><p class="intro">真实自然录音与柔和器乐。选择一层或几层声音，调到刚刚好的音量。</p><div class="presets" id="presets"></div><div id="soundLibrary" class="sound-grid"></div><div class="sound-toolbar"><button class="cta" onclick="stopAmbient()">停止全部声音</button><span id="audioStatus" role="status">点击音景卡片试听</span></div><details class="credits"><summary>开源资源与音频授权</summary><div id="creditsText"></div></details></div></section><nav class="tabbar" id="tabbar"><button data-view="sounds" onclick="go('sounds')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 18V5l12-2v13M9 9l12-2"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>声音</button>
+  <button data-view="home" class="on" onclick="go('home')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>首页
+  </button>
+  <button data-view="program" onclick="go('program')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>计划
+  </button>
+  <button data-view="archive" onclick="go('archive')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg>档案
+  </button>
+  <button data-view="device" onclick="go('device')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg>设备
+  </button>
+</nav>
+
+<div class="done-overlay" id="doneOverlay">
+  <div class="kicker">SESSION COMPLETE</div>
+  <h2 class="serif">把这一刻，留给明天</h2>
+  <p id="doneText"></p>
+  <input type="text" id="anchorInput" placeholder="例如：肩膀沉下去的那一下，脑子是空的">
+  <button class="cta" onclick="saveAnchor()">存入舒适档案</button>
+</div>
+
+<script>
+/* ============================================================
+   30天课程数据
+   ============================================================ */
+let PROGRAM = [];
+const WEEK_THEME = {1:["着陆","把注意力拉回身体"],2:["解扣","松开紧绷的地方"],3:["观浪","看着情绪来去"],4:["锚定","把舒适带到生活里"]};
+
+/* ============================================================
+   Onboarding 问卷
+   ============================================================ */
+const QUESTIONS = {
+  state:{
+    opts:[
+      {v:"mind", em:"🌫", t:"脑子停不下来", s:"念头一个接一个，很难安静"},
+      {v:"body", em:"🪨", t:"身体紧绷", s:"肩颈、后背或者下颌发紧"},
+      {v:"sleep", em:"🌙", t:"睡不着", s:"躺下后很难入睡或容易醒"},
+      {v:"mood", em:"🌧", t:"情绪低落", s:"有点闷、累，提不起劲"},
+      {v:"curious", em:"🍃", t:"只是好奇", s:"想试试冥想是什么感觉"},
+    ]},
+  goal:{
+    opts:[
+      {v:"relax", em:"🍵", t:"快速放松", s:"几分钟内让自己慢下来"},
+      {v:"sleep", em:"💤", t:"改善睡眠", s:"睡前更容易入睡"},
+      {v:"anxiety", em:"🌊", t:"缓解焦虑", s:"和停不下来的担心共处"},
+      {v:"focus", em:"🎯", t:"提升专注", s:"做事时更容易进入状态"},
+      {v:"know", em:"🫧", t:"了解自己的身体", s:"知道紧张藏在哪里"},
+    ]},
+  time:{
+    opts:[
+      {v:"3", em:"⏱", t:"3 分钟左右", s:"只想用碎片时间"},
+      {v:"8", em:"🕯", t:"5 - 8 分钟", s:"睡前或午休"},
+      {v:"15", em:"🌳", t:"10 分钟以上", s:"愿意认真练"},
+    ]},
+  exp:{
+    opts:[
+      {v:"first", em:"🌱", t:"第一次", s:"从没冥想过"},
+      {v:"few", em:"🌿", t:"试过几次", s:"断断续续，没坚持下来"},
+      {v:"regular", em:"🌲", t:"有规律练习", s:"想更系统地深入"},
+    ]},
+};
+let onbAnswers = {};
+
+function buildOnboarding(){
+  Object.keys(QUESTIONS).forEach(q=>{
+    const box = document.querySelector(`.onb-options[data-q="${q}"]`);
+    box.innerHTML = QUESTIONS[q].opts.map(o=>`
+      <div class="onb-opt" data-v="${o.v}" onclick="selectOpt('${q}','${o.v}',this)">
+        <div class="em">${o.em}</div>
+        <div class="tx"><b>${o.t}</b><span>${o.s}</span></div>
+        <div class="check">✓</div>
+      </div>`).join('');
+  });
+}
+function selectOpt(q,v,el){
+  onbAnswers[q]=v;
+  el.parentElement.querySelectorAll('.onb-opt').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel');
+  const btn = el.closest('.onb-step').querySelector('.cta');
+  btn.disabled = false;
+}
+function onbNext(n){
+  showOnbStep(n);
+}
+function showOnbStep(n){
+  document.querySelectorAll('.onb-step').forEach((s,i)=>s.classList.toggle('show', i===n));
+  const prog = document.getElementById('onbProgress');
+  if(n>=1 && n<=4){
+    prog.style.display='flex';
+    prog.querySelectorAll('i').forEach((dot,i)=>dot.classList.toggle('on', i<n));
+  } else { prog.style.display='none'; }
+}
+function recommendDay(){
+  const {state,goal,exp} = onbAnswers;
+  if(exp==='first') return {day:1, reason:"你是第一次接触冥想。我们从最基础的着陆开始——先学会把注意力从杂念里拉回身体，这是后面一切的地基。"};
+  if(exp==='regular') return {day:15, reason:"你已经有练习基础。第三周的箱式呼吸能直接提升你的专注与情绪稳定度，适合作为新的起点。"};
+  // 试过几次：按状态/目标定向
+  if(state==='sleep' || goal==='sleep') return {day:8, reason:"针对你「睡不着」的状态，4-7-8 呼吸是生理上最强的助眠呼吸——它能直接激活副交感神经，让心率慢下来。今晚就用得上。"};
+  if(state==='body' || goal==='know') return {day:6, reason:"你最明显的信号在身体上。这一课专门处理肩颈和面部——大多数人的压力都卡在这两个地方，松开它们的效果立竿见影。"};
+  if(state==='mind' || goal==='anxiety') return {day:5, reason:"脑子停不下来时，越逼自己「不想」越焦虑。这一课反过来教你欢迎走神——每一次发现走神并回来，大脑就多一分稳定。"};
+  if(state==='mood') return {day:18, reason:"情绪低落时，最需要的不是开心起来，而是被看见。这一课教你给情绪准确命名——神经科学证实，命名本身就能降低大脑的情绪反应。"};
+  if(goal==='focus') return {day:15, reason:"想提升专注，箱式呼吸是最直接的工具——四个等长的呼吸阶段把心率稳定成矩形波，是高压人群常用的赛前技术。"};
+  return {day:3, reason:"我们从一个最简单的手部觉察开始，五分钟就能体验到「身体放松」和「脑子放松」的区别。"};
+}
+function showRecommendation(){
+  const rec = recommendDay();
+  const d = PROGRAM[rec.day-1];
+  document.getElementById('recOrb').textContent = d.day;
+  document.getElementById('recTitle').textContent = `Day ${d.day} · ${d.title}`;
+  let reason = rec.reason;
+  if(onbAnswers.time==='3') reason += "\n\n你每天只有 3 分钟——前两周的课程都在 8 分钟以内，可以随时提前结束，呼吸练习本身随时有效。";
+  document.getElementById('recReason').textContent = reason;
+  document.getElementById('recTags').innerHTML =
+    `<span class="chip g">${d.breath.name}</span><span class="chip">${d.dur} 分钟</span><span class="chip a">第 ${d.week} 周</span>`;
+  onbAnswers.recDay = rec.day;
+  localStorage.setItem('calm_profile', JSON.stringify(onbAnswers));
+  showOnbStep(5);
+}
+function finishOnboarding(skip){
+  localStorage.setItem('calm_onboarded','1');
+  if(skip){ onbAnswers = {recDay:1}; }
+  enterApp();
+}
+function startRecommended(){
+  localStorage.setItem('calm_onboarded','1');
+  const day = onbAnswers.recDay || 1;
+  enterApp(()=>startSession(day));
+}
+function enterAppFromDay1(){
+  localStorage.setItem('calm_onboarded','1');
+  onbAnswers.recDay = 1;
+  enterApp();
+}
+function enterApp(after){
+  document.getElementById('view-onb').classList.remove('active');
+  document.getElementById('tabbar').classList.add('show');
+  go('home');
+  if(after) after();
+}
+
+/* ============================================================
+   状态
+   ============================================================ */
+let state = {
+  done: JSON.parse(localStorage.getItem('calm_done')||'{}'),
+  anchors: JSON.parse(localStorage.getItem('calm_anchors')||'[]'),
+  scores: JSON.parse(localStorage.getItem('calm_scores')||'{}'),
+};
+let profile = JSON.parse(localStorage.getItem('calm_profile')||'{}');
+let homeRecommendedDay = profile.recDay || 1;
+function save(){
+  localStorage.setItem('calm_done', JSON.stringify(state.done));
+  localStorage.setItem('calm_anchors', JSON.stringify(state.anchors));
+  localStorage.setItem('calm_scores', JSON.stringify(state.scores||{}));
+}
+
+/* ============================================================
+   路由
+   ============================================================ */
+function go(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  document.querySelectorAll('.tabbar button').forEach(b=>b.classList.toggle('on', b.dataset.view===name));
+  if(name!=='home') stopHomeWave();
+  if(name==='home') renderHome();
+  if(name==='program') renderProgram();
+  if(name==='archive') renderArchive();
+}
+
+function nextPendingDay(){
+  for(let i=0;i<PROGRAM.length;i++){ if(!state.done[PROGRAM[i].day]) return PROGRAM[i].day; }
+  return 1;
+}
+
+/* ===== 每日正念一句（按日期轮换，共 30 句） ===== */
+const DAILY=[
+  '今天不用变好，先在这里待一会儿就好。',
+  '呼吸一直都在，你随时可以回来。',
+  '把肩膀放下来，世界不会因此塌掉。',
+  '慢一点没关系，花又不赶时间。',
+  '你不需要清空念头，只需要看见它们。',
+  '这一口气，只属于你自己。',
+  '身体比你以为的更努力，谢谢它。',
+  '情绪像天气，而你是天空，不是风暴。',
+  '此刻坐在这里，就已经是在照顾自己了。',
+  '松开咬着的牙，松开攥着的拳，也松开一点心事。',
+  '走神不是失败，发现走神，就是练习本身。',
+  '让呼吸替你扛一会儿，你不用时刻用力。',
+  '该完成的事，不会因为你休息五分钟就消失。',
+  '感受脚踩在地上的重量，你是被稳稳接住的。',
+  '不用演给谁看，现在你可以只是你自己。',
+  '心跳慢下来的时候，答案会自己浮上来。',
+  '允许自己什么都不做，这五分钟你说了算。',
+  '每一次呼气，都是身体在说：可以松一点了。',
+  '念头来了就点点头，让它走，它只是路过。',
+  '你的疲惫是真实的，你的休息也是应该的。',
+  '像听见风声一样，听见自己此刻的需要。',
+  '不和此刻较劲，它已经在发生了。',
+  '一呼一吸之间，有一个不用解决问题的地方。',
+  '今天的你已经很努力了，剩下的交给夜晚。',
+  '温柔地把注意力领回来，像领一个走神的小孩。',
+  '安住不需要理由，呼吸就是最好的理由。',
+  '所有的紧绷，都可以一点一点还给地面。',
+  '你不是在浪费时间，你是在把自己捡回来。',
+  '心里乱的时候，就先把注意力放回脚底。',
+  '愿你带着此刻的安静，走进接下来的一天。'
+];
+function dayOfYear(){
+  const d=new Date();
+  return Math.floor((d-new Date(d.getFullYear(),0,0))/86400000);
+}
+function renderDaily(){
+  const qEl=document.getElementById('dailyQuote');
+  if(!qEl) return;
+  qEl.textContent=DAILY[dayOfYear()%DAILY.length];
+  const d=new Date();
+  document.getElementById('dailyDate').textContent='今日正念 · '+(d.getMonth()+1)+'月'+d.getDate()+'日';
+}
+function renderHome(){
+  // 推荐课：若推荐日未完成则推荐它，否则推进到下一个未完成
+  let day = homeRecommendedDay;
+  if(state.done[day]) day = nextPendingDay();
+  homeRecommendedDay = day;
+  const d = PROGRAM[day-1];
+  document.getElementById('heroLabel').textContent = profile.recDay ? '为你推荐' : '今日校准';
+  document.getElementById('homeDayTitle').textContent = `Day ${d.day} · ${d.title}`;
+  document.getElementById('homeDaySub').textContent = `约 ${d.dur} 分钟 · ${d.breath.name} · 身体扫描`;
+  document.getElementById('homeBreathTag').textContent = d.breath.name;
+  document.getElementById('homeDurTag').textContent = d.dur+' 分钟';
+  const hour = new Date().getHours();
+  document.getElementById('greetText').textContent = hour<12?'早上好':hour<18?'下午好':'晚上好';
+  let streak=0, cursor=new Date();
+  for(let i=0;i<365;i++){
+    const key=cursor.toDateString();
+    const has=Object.values(state.done).some(ts=>new Date(ts).toDateString()===key);
+    if(has) streak++; else if(i>0) break;
+    cursor.setDate(cursor.getDate()-1);
+  }
+  document.getElementById('streakNum').textContent=streak;
+  document.getElementById('statDone').textContent=Object.keys(state.done).length+' / 30';
+  document.getElementById('statMin').textContent=Object.keys(state.done).reduce((s,dd)=>s+(PROGRAM[dd-1]?PROGRAM[dd-1].dur:0),0);
+  startHomeWave();
+  renderDaily();
+}
+
+function renderProgram(){
+  let html='';
+  for(let w=1;w<=4;w++){
+    const [name,theme]=({1:['安住当下','呼吸与支撑 · 15 分钟'],2:['倾听身体','细致觉察 · 16 分钟'],3:['陪伴内在','念头与情绪 · 18 分钟'],4:['带入生活','整合与自主练习 · 20 分钟']})[w];
+    html+=`<div class="week-block"><div class="week-head">
+      <div class="week-name serif">第${['一','二','三','四'][w-1]}周 · ${name}</div><div class="week-theme">${theme}</div></div>`;
+    PROGRAM.filter(x=>x.week===w).forEach(d=>{
+      const done=state.done[d.day];
+      const locked=false;
+      html+=`<div class="day-item ${done?'done':''} ${locked?'locked':''}" onclick="startSession(${d.day})">
+        <div class="day-num">${done?'✓':d.day}</div>
+        <div class="day-info"><div class="day-title">${d.title}</div>
+        <div class="day-sub">${d.dur}分钟 · ${d.breath.name}</div></div>
+        <div class="day-arrow">›</div></div>`;
+    });
+    html+='</div>';
+  }
+  document.getElementById('programList').innerHTML=html;
+}
+function renderArchive(){
+  const el=document.getElementById('anchorList');
+  if(state.anchors.length===0){
+    el.innerHTML=`<div class="archive-empty"><div class="big">还没有记录</div>完成第一次练习后，<br>把此刻的放松感存进来。</div>`;
+    return;
+  }
+  el.innerHTML=state.anchors.slice().reverse().map(a=>`
+    <div class="anchor-item"><div class="d">DAY ${a.day} · ${PROGRAM[a.day-1].title}</div>
+    <div class="t">${escapeHtml(a.text)}</div></div>`).join('');
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+/* ============================================================
+   播放引擎
+   ============================================================ */
+/* ============================================================
+   播放引擎：呼吸 + 引导语 + 身体扫描 + 个性化放松度
+   放松度原理参考开源项目 muse-calm 的 CalmEngine（MIT 类许可，独立实现）：
+   前 25 秒采集个人基线（α 相对功率与 log(α/β) 的中位数/MAD），
+   之后用相对基线的鲁棒 z 分数经 sigmoid 映射为 0-100。
+   当前为模拟频段，硬件接入后只需用真实 FFT 频段替换 simBandFrame。
+   ============================================================ */
+const CALIB_SEC=25;
+const SCAN_ROUTE=['head','face','neck','shoulder','chest','heart','belly','hand','hip','foot'];
+const PART_TO_ROUTE={head:'head',face:'face',nose:'face',neck:'neck',shoulder:'shoulder',armL:'shoulder',armR:'shoulder',chest:'chest',back:'chest',heart:'heart',belly:'belly',hand:'hand',hip:'hip',legL:'foot',legR:'foot',foot:'foot'};
+const PART_LABEL={head:'头顶',face:'面部',nose:'鼻腔',neck:'后颈',shoulder:'肩颈',chest:'胸口',back:'后背',heart:'心口',belly:'腹部',hand:'双手',hip:'臀部',foot:'双脚'};
+
+let session={day:null,stepIdx:0,playing:false,timerInt:null,stepInt:null,elapsed:0,audioCtx:null,soundOn:false,ambientNodes:null,bowlIv:null};
+
+function median(a){const s=a.slice().sort((x,y)=>x-y);const n=s.length;return n?(n%2?s[n>>1]:0.5*(s[n/2-1]+s[n/2])):0;}
+function mad(a,m){return median(a.map(v=>Math.abs(v-m)));}
+function gauss(){let u=0;while(!u)u=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*Math.random());}
+
+/* 模拟一帧频段功率：放松度越高 α 越高、β 越低（生理正确，硬件接入后替换） */
+function simBandFrame(c){
+  return {
+    alpha:Math.max(0.02,0.10+0.22*c+gauss()*0.02),
+    beta:Math.max(0.03,0.30-0.18*c+gauss()*0.025),
+  };
+}
+
+const CalmSim={
+  reset(totalSec){
+    this.t=0;this.total=totalSec;this.cA=[];this.cAB=[];this.baseline=null;
+    this.score=null;this.fA=null;this.fAB=null;this.raw=50;
+    this.highHold=0;this.lowHold=0;this.birdCd=8;this.nudgeCd=30;
+    this.sum=0;this.n=0;this.peak=0;this.visCalm=0.15;
+  },
+  get calibrating(){return !this.baseline;},
+  update(dt){
+    if(dt<=0) return;
+    this.t+=dt;
+    const prog=Math.min(1,Math.max(0,(this.t-CALIB_SEC)/Math.max(1,this.total-CALIB_SEC)));
+    let target;
+    if(this.t<CALIB_SEC){
+      target=0.2+0.04*Math.sin(this.t*0.3);
+    }else{
+      const wander=0.06*Math.sin(this.t*0.12)+0.035*Math.sin(this.t*0.31);
+      const dip=Math.sin(this.t*0.07)>0.93?-0.14:0;   // 偶发"走神"下沉
+      target=0.22+0.5*(1-Math.exp(-prog*2))+wander+dip;
+    }
+    target=Math.max(0.1,Math.min(0.82,target));
+    const b=simBandFrame(target);
+    const a=b.alpha,ab=Math.log((b.alpha+1e-9)/(b.beta+1e-9));
+    const k=1-Math.exp(-dt/2);
+    this.fA=this.fA===null?a:this.fA+k*(a-this.fA);
+    this.fAB=this.fAB===null?ab:this.fAB+k*(ab-this.fAB);
+    if(!this.baseline){
+      if(this.t>4){this.cA.push(this.fA);this.cAB.push(this.fAB);}
+      this.raw=45+gauss()*4;
+      if(this.t>=CALIB_SEC&&this.cA.length>8){
+        const mA=median(this.cA),mAB=median(this.cAB);
+        this.baseline={mA,mAB,sA:Math.max(0.045,1.4826*mad(this.cA,mA)),sAB:Math.max(0.32,1.4826*mad(this.cAB,mAB))};
+      }
+    }else{
+      const B=this.baseline;
+      const z=0.6*(this.fA-B.mA)/B.sA+0.4*(this.fAB-B.mAB)/B.sAB;
+      this.raw=100/(1+Math.exp(-(0.8*z-0.15)));
+    }
+    const ks=1-Math.exp(-dt/3);
+    this.score=this.score===null?this.raw:this.score+ks*(this.raw-this.score);
+    this.visCalm+= (this.baseline?this.score/100:0.15 - this.visCalm)*Math.min(1,dt*2);
+    if(this.baseline){
+      this.sum+=this.score;this.n++;this.peak=Math.max(this.peak,this.score);
+      this.birdCd-=dt;
+      if(this.score>72){this.highHold+=dt;if(this.highHold>6&&this.birdCd<=0){playBird();this.birdCd=18;this.highHold=0;}}
+      else this.highHold=Math.max(0,this.highHold-dt);
+      this.nudgeCd-=dt;
+      if(this.score<28){this.lowHold+=dt;
+        if(this.lowHold>12&&this.nudgeCd<=0&&session.playing){
+          speak('没关系，不用责怪自己，把注意力轻轻带回呼吸，就好。');
+          this.nudgeCd=45;this.lowHold=0;
+        }
+      }else this.lowHold=Math.max(0,this.lowHold-dt);
+    }
+  },
+};
+
+function startSession(dayNum){
+  stopEEG();
+  session.day=PROGRAM[dayNum-1];session.stepIdx=0;session.elapsed=0;session.playing=false;
+  const totalSec=session.day.steps.reduce((s,x)=>s+x.s,0);
+  CalmSim.reset(totalSec);
+  go('session');
+  document.getElementById('sessionBreathTag').textContent=session.day.breath.name+' · '+session.day.breathHint;
+  document.getElementById('playBtn').textContent='开始';
+  document.getElementById('scriptText').textContent=`Day ${dayNum} · ${session.day.title}\n\n准备好了吗？点击开始。`;
+  document.getElementById('scriptHint').textContent='引导语将自动朗读';
+  resetScan();
+  document.getElementById('relaxVal').textContent='模拟校准 '+CALIB_SEC+'s';
+  drawEEG();
+}
+function togglePlay(){ session.playing?pauseSession():playSession(); }
+function playSession(){
+  session.playing=true;document.getElementById('playBtn').textContent='暂停';
+  if(session.audioCtx&&session.audioCtx.state==='suspended') session.audioCtx.resume();
+  if(!session.timerInt){
+    session.timerInt=setInterval(()=>{
+      session.elapsed++;
+      document.getElementById('sessionTimer').textContent=
+        String(Math.floor(session.elapsed/60)).padStart(2,'0')+':'+String(session.elapsed%60).padStart(2,'0');
+    },1000);
+  }
+  playStep();
+}
+function pauseSession(){
+  session.playing=false;document.getElementById('playBtn').textContent='继续';
+  clearTimeout(session.stepInt);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+}
+function quitSession(){
+  pauseSession();
+  if(session.timerInt){clearInterval(session.timerInt);session.timerInt=null;}
+  stopEEG();stopAmbient();go('home');
+}
+function playStep(){
+  if(!session.playing) return;
+  const d=session.day;
+  if(session.stepIdx>=d.steps.length){finishSession();return;}
+  const step=d.steps[session.stepIdx];
+  document.getElementById('scriptText').textContent=step.t;
+  document.getElementById('scriptHint').textContent=`第 ${session.stepIdx+1} / ${d.steps.length} 段`;
+  highlightBody(step.part);
+  speak(step.t);
+  runBreathCycle(step.p,d.breath.pattern);
+  session.stepInt=setTimeout(()=>{session.stepIdx++;playStep();},step.s*1000);
+}
+function finishSession(){
+  pauseSession();
+  if(session.timerInt){clearInterval(session.timerInt);session.timerInt=null;}
+  stopEEG();stopAmbient();
+  const avg=CalmSim.n?Math.round(CalmSim.sum/CalmSim.n):0,peak=Math.round(CalmSim.peak);
+  state.done[session.day.day]=Date.now();
+  state.scores=state.scores||{};
+  state.scores[session.day.day]={peak,avg};
+  save();
+  document.getElementById('doneText').innerHTML=
+    `Day ${session.day.day} · ${session.day.title} 完成。<br>你的舒适基线已校准。<br>本次放松度峰值 <b style="color:#6E8F7B">${peak}</b>，均值 <b style="color:#6E8F7B">${avg}</b>。<br><br>现在感觉身体哪里最放松？<br>记一句话给未来的自己。`;
+  document.getElementById('doneOverlay').classList.add('show');
+}
+function saveAnchor(){
+  const txt=document.getElementById('anchorInput').value.trim();
+  if(txt){state.anchors.push({day:session.day.day,text:txt});save();}
+  document.getElementById('anchorInput').value='';
+  document.getElementById('doneOverlay').classList.remove('show');
+  session.day=null;go('home');
+}
+
+function speak(text){
+  if(!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='zh-CN';u.rate=0.9;
+  const v=speechSynthesis.getVoices().find(x=>x.lang.startsWith('zh'));
+  if(v) u.voice=v;
+  speechSynthesis.speak(u);
+}
+function runBreathCycle(phase,pattern){
+  const orb=document.getElementById('breathOrb');
+  const phaseEl=document.getElementById('breathPhase');
+  const countEl=document.getElementById('breathCount');
+  const [iSec,hSec,oSec]=pattern;
+  if(iSec===0&&oSec===0){phaseEl.textContent='自然呼吸';countEl.textContent='';orb.style.transform='scale(1)';return;}
+  if(phase==='i'&&iSec>0){
+    phaseEl.textContent='吸气';orb.style.transitionDuration=(iSec*1000)+'ms';orb.style.transform='scale(1.2)';countdown(iSec,countEl);
+  }else if(phase==='h'&&hSec>0){
+    phaseEl.textContent='屏息';orb.style.transitionDuration='200ms';orb.style.transform='scale(1.2)';countdown(hSec,countEl);
+  }else{
+    phaseEl.textContent='呼气';orb.style.transitionDuration=(oSec*1000)+'ms';orb.style.transform='scale(0.87)';countdown(oSec,countEl);
+  }
+}
+function countdown(sec,el){
+  let n=sec;el.textContent=n;
+  const iv=setInterval(()=>{n--;if(n<=0){clearInterval(iv);return;}el.textContent=n;},1000);
+}
+
+/* ===== 身体扫描：静坐人形光点 + 轨迹 ===== */
+function resetScan(){
+  document.querySelectorAll('.scan-dot').forEach(d=>d.classList.remove('active','visited'));
+  document.querySelectorAll('#scanTrack i').forEach(i=>i.classList.remove('on'));
+  document.getElementById('currentPart').innerHTML='准备<small></small>';
+}
+function highlightBody(part){
+  document.querySelectorAll('.scan-dot').forEach(d=>d.classList.remove('active'));
+  const nameEl=document.getElementById('currentPart');
+  if(!part){nameEl.innerHTML='全身<small></small>';return;}
+  const route=PART_TO_ROUTE[part]||part;
+  const idx=SCAN_ROUTE.indexOf(route);
+  document.querySelectorAll('.scan-dot').forEach(d=>{
+    const di=SCAN_ROUTE.indexOf(d.dataset.route);
+    d.classList.toggle('visited',di>=0&&di<idx);
+  });
+  if(idx>=0){
+    const dot=document.querySelector(`.scan-dot[data-route="${SCAN_ROUTE[idx]}"]`);
+    if(dot) dot.classList.add('active');
+    document.querySelectorAll('#scanTrack i').forEach((i2,ii)=>i2.classList.toggle('on',ii<=idx));
+  }
+  nameEl.innerHTML=`${PART_LABEL[part]||part}<small>扫描 ${idx>=0?idx+1:'—'} / 10</small>`;
+}
+
+/* ===== EEG 波形（α 慢波 + β 快波叠加，放松时慢波主导） ===== */
+let eegRAF=null,eegLast=0,phaseA=0,phaseB=0;
+function drawEEG(){
+  stopEEG();
+  const c=document.getElementById('eegCanvas'),ctx=c.getContext('2d');
+  c.width=c.clientWidth*devicePixelRatio;c.height=c.clientHeight*devicePixelRatio;
+  eegLast=performance.now();
+  function frame(now){
+    const dt=Math.min(0.1,(now-eegLast)/1000);eegLast=now;
+    if(session.playing) CalmSim.update(dt);
+    const w=c.width,h=c.height;
+    ctx.fillStyle='rgba(244,242,236,0.28)';ctx.fillRect(0,0,w,h);
+    const cr=CalmSim.baseline?(CalmSim.score||50)/100:CalmSim.t<CALIB_SEC?0.15:0.4;
+    const ampA=h*0.30*(0.35+0.75*cr),ampB=h*0.15*(1-0.72*cr);
+    phaseA+=0.045;phaseB+=0.17;
+    ctx.strokeStyle=cr>0.55?'#6E8F7B':'#C09A78';
+    ctx.lineWidth=1.5*devicePixelRatio;ctx.beginPath();
+    for(let px=0;px<w;px+=2){
+      const y=h/2
+        +Math.sin(px*0.032+phaseA)*ampA
+        +Math.sin(px*0.115+phaseB*1.4)*ampB
+        +(Math.random()-0.5)*h*0.03;
+      px===0?ctx.moveTo(px,y):ctx.lineTo(px,y);
+    }
+    ctx.stroke();
+    const rv=document.getElementById('relaxVal');
+    if(CalmSim.calibrating){
+      rv.textContent='模拟校准 '+Math.max(0,Math.ceil(CALIB_SEC-CalmSim.t))+'s';
+      rv.style.color='#A87A52';
+    }else{
+      rv.textContent='模拟指数 '+Math.round(CalmSim.score||0);
+      rv.style.color='#6E8F7B';
+    }
+    eegRAF=requestAnimationFrame(frame);
+  }
+  eegRAF=requestAnimationFrame(frame);
+}
+function stopEEG(){if(eegRAF){cancelAnimationFrame(eegRAF);eegRAF=null;}}
+
+/* 首页波浪：RAF 连续流动（drawHomeWave 为兼容入口，幂等启动） */
+let waveRAF=null,wavePhase=0;
+function drawHomeWave(){startHomeWave();}
+function startHomeWave(){
+  stopHomeWave();
+  const c=document.getElementById('homeWave');if(!c)return;
+  const ctx=c.getContext('2d');
+  c.width=c.clientWidth*devicePixelRatio;c.height=c.clientHeight*devicePixelRatio;
+  const w=c.width,h=c.height;
+  (function frame(){
+    ctx.clearRect(0,0,w,h);
+    wavePhase+=0.008;
+    ctx.lineWidth=1.5*devicePixelRatio;
+    ctx.strokeStyle='rgba(110,143,123,0.7)';ctx.beginPath();
+    for(let x=0;x<w;x+=2){
+      const y=h/2+Math.sin(x*0.02-wavePhase)*h*0.26+Math.sin(x*0.05+wavePhase*0.6)*h*0.09;
+      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+    ctx.strokeStyle='rgba(157,184,196,0.55)';ctx.beginPath();
+    for(let x=0;x<w;x+=2){
+      const y=h/2+Math.sin(x*0.015+wavePhase*0.55)*h*0.18+h*0.12;
+      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+    waveRAF=requestAnimationFrame(frame);
+  })();
+}
+function stopHomeWave(){if(waveRAF){cancelAnimationFrame(waveRAF);waveRAF=null;}}
+
+/* ===== 音景：海浪 / 雨 / 颂钵（Web Audio 合成，无外部文件） ===== */
+const SOUNDSCAPES=[null,'海浪','雨声','颂钵'];
+let soundIdx=0;
+function toggleSound(){
+  if(session.soundOn){
+    stopAmbient();soundIdx=(soundIdx+1)%SOUNDSCAPES.length;
+    if(SOUNDSCAPES[soundIdx]) startAmbient(SOUNDSCAPES[soundIdx]);
+  }else{
+    soundIdx=1;startAmbient('海浪');
+  }
+}
+function updateSoundBtn(){document.getElementById('soundBtn').textContent=session.soundOn?'音景：'+SOUNDSCAPES[soundIdx]:'环境音：关';}
+function noiseBuffer(ctx,type,secs){
+  const len=ctx.sampleRate*secs,buf=ctx.createBuffer(1,len,ctx.sampleRate),d=buf.getChannelData(0);
+  let last=0;
+  for(let i=0;i<len;i++){
+    const w=Math.random()*2-1;
+    if(type==='brown'){last=(last+0.02*w)/1.02;d[i]=last*3.2;}
+    else d[i]=w;
+  }
+  return buf;
+}
+function startAmbient(kind){
+  try{
+    session.audioCtx=session.audioCtx||new(window.AudioContext||window.webkitAudioContext)();
+    const ctx=session.audioCtx;
+    if(ctx.state==='suspended') ctx.resume();
+    const master=ctx.createGain();master.gain.value=0.0001;master.connect(ctx.destination);
+    master.gain.linearRampToValueAtTime(0.13,ctx.currentTime+2.5);
+    const nodes=[master];
+    if(kind==='海浪'){
+      const src=ctx.createBufferSource();src.buffer=noiseBuffer(ctx,'brown',5);src.loop=true;
+      const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=420;
+      const g=ctx.createGain();g.gain.value=0.7;
+      src.connect(lp);lp.connect(g);g.connect(master);src.start();nodes.push(src,lp,g);
+      const lfo=ctx.createOscillator();lfo.frequency.value=0.11;
+      const lfoG=ctx.createGain();lfoG.gain.value=0.4;
+      lfo.connect(lfoG);lfoG.connect(g.gain);lfo.start();nodes.push(lfo,lfoG);
+    }else if(kind==='雨声'){
+      const src=ctx.createBufferSource();src.buffer=noiseBuffer(ctx,'white',3);src.loop=true;
+      const bp=ctx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=1700;bp.Q.value=0.4;
+      const hp=ctx.createBiquadFilter();hp.type='highpass';hp.frequency.value=600;
+      const g=ctx.createGain();g.gain.value=0.42;
+      src.connect(hp);hp.connect(bp);bp.connect(g);g.connect(master);src.start();nodes.push(src,bp,hp,g);
+    }else if(kind==='颂钵'){
+      [110,165].forEach(f=>{
+        const o=ctx.createOscillator();o.type='sine';o.frequency.value=f;
+        const g=ctx.createGain();g.gain.value=0.16;o.connect(g);g.connect(master);o.start();nodes.push(o,g);
+      });
+      const bowlIv=setInterval(()=>{
+        if(!session.soundOn)return;
+        const t=ctx.currentTime,f=[220,165,247][Math.floor(Math.random()*3)];
+        const o=ctx.createOscillator();o.type='sine';o.frequency.value=f;
+        const g=ctx.createGain();
+        g.gain.setValueAtTime(0.0001,t);
+        g.gain.exponentialRampToValueAtTime(0.3,t+0.03);
+        g.gain.exponentialRampToValueAtTime(0.0001,t+6);
+        o.connect(g);g.connect(master);o.start(t);o.stop(t+6.2);
+      },14000);
+      session.bowlIv=bowlIv;
+      nodes.push({stop(){clearInterval(bowlIv);}});
+    }
+    session.ambientNodes=nodes;session.soundOn=true;updateSoundBtn();
+  }catch(e){}
+}
+function stopAmbient(){
+  if(session.bowlIv){clearInterval(session.bowlIv);session.bowlIv=null;}
+  if(session.ambientNodes){session.ambientNodes.forEach(n=>{try{n.stop?n.stop():n.disconnect();}catch(e){}});session.ambientNodes=null;}
+  session.soundOn=false;updateSoundBtn();
+}
+
+/* 放松时的鸟鸣奖励（轻，短） */
+function playBird(){
+  if(!session.audioCtx)return;
+  const ctx=session.audioCtx,t=ctx.currentTime;
+  const o=ctx.createOscillator();o.type='sine';
+  const g=ctx.createGain();o.connect(g);g.connect(ctx.destination);
+  o.frequency.setValueAtTime(1900,t);
+  o.frequency.exponentialRampToValueAtTime(2700,t+0.12);
+  o.frequency.exponentialRampToValueAtTime(2100,t+0.22);
+  o.frequency.exponentialRampToValueAtTime(2900,t+0.34);
+  g.gain.setValueAtTime(0.0001,t);
+  g.gain.exponentialRampToValueAtTime(0.08,t+0.05);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+0.5);
+  o.start(t);o.stop(t+0.55);
+}
+
+/* ============================================================
+   启动
+   ============================================================ */
+buildOnboarding();
+// 开屏：3.2 秒后自动淡出，点击任意处立即跳过
+(function(){
+  const splash=document.getElementById('splash');
+  let gone=false;
+  function hide(){
+    if(gone) return; gone=true;
+    splash.classList.add('hide');
+    setTimeout(()=>splash.remove(),1000);
+  }
+  splash.addEventListener('click',hide);
+  setTimeout(hide,4200);
+})();
+
+</script><script src="explore/upgrade.js"></script><script src="explore/features.js"></script><script src="https://modestomckoan.github.io/roost/mix-store.js"></script><script src="https://modestomckoan.github.io/roost/sound-studio.js"></script><script src="https://modestomckoan.github.io/roost/course-tracks.js"></script><script src="https://modestomckoan.github.io/roost/xiaoxi.js"></script><script src="explore/qixin-explore.js"></script>
+</body>
+</html>
