@@ -1,5 +1,5 @@
 /* ============================================================
-   栖心 Flow · 探索页（对齐《冥想资源库效果图》确认版）
+   栖心 Flow · 探索页（连续单页 · 上滑吸顶）
    配色：栖心绿 / 米纸 / 黄绿渐变；底部主站 5 Tab
    ============================================================ */
 :root{
@@ -12,83 +12,97 @@
   --qx-paper:#f9f9f0;
   --qx-cream:#fffdf5;
   --qx-line:#d7dfcd;
-  --qx-cat-active:#e7eedb;
   --qx-bg:linear-gradient(167deg,#eef1e4 0%,#e3ead6 52%,#d7e1c7 100%);
+  --qx-htab-h:61px;
 }
 
-/* ---------- 顶部栏 ---------- */
+/* ---------- 连续页容器 ---------- */
+#view-explore{background:var(--qx-bg);}
+#view-explore.active{display:flex;flex-direction:column;height:100%;}
+.qx-page{height:100%;display:flex;flex-direction:column;min-height:0;}
+
+/* ---------- 顶部栏（不滚动） ---------- */
 .qx-appbar{height:50px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 18px;}
 .qx-appbar .ab-title{font-size:16px;font-weight:600;color:var(--qx-ink);letter-spacing:.5px;}
 .qx-icon-btn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--qx-ink);background:transparent;border:0;cursor:pointer;}
 .qx-icon-btn svg{width:20px;height:20px;}
 
-/* ---------- 探索 / 课程 两页背景 ---------- */
-#view-explore{background:var(--qx-bg);min-height:100vh;}
-#view-courses{background:var(--qx-bg);}
-#view-courses.active{display:flex;flex-direction:column;height:100vh;}
-#view-courses .qx-screenwrap{flex:1;display:flex;flex-direction:column;min-height:0;}
-#view-explore .qx-screenwrap{min-height:100vh;}
+/* ---------- 滚动容器 ---------- */
+.qx-scroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 
 /* ---------- 搜索行 ---------- */
 .qx-searchrow{display:flex;align-items:center;gap:10px;padding:10px 22px 2px;}
 .qx-chev{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--qx-deep);flex-shrink:0;cursor:pointer;}
 .qx-chev svg{width:20px;height:20px;}
 .qx-search-pill{flex:1;display:flex;align-items:center;gap:10px;background:#f3f6ec;border:1px solid #dce3d0;border-radius:26px;padding:12px 20px;color:var(--qx-muted);font-size:14px;box-shadow:0 4px 12px rgba(70,90,60,.06);cursor:pointer;}
-.qx-search-pill .sp{width:22px;height:22px;color:var(--qx-deep);display:flex;}
+.qx-search-pill .sp{width:22px;height:22px;color:var(--qx-deep);display:flex;align-items:center;}
 .qx-search-pill .sp svg{width:22px;height:22px;}
 
-.qx-explore-page{padding-bottom:140px;}
-
 /* ---------- 功能宫格 ---------- */
-.grid10{display:grid;grid-template-columns:repeat(4,1fr);gap:22px 8px;padding:14px 22px 2px;}
+.qx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px 8px;padding:14px 22px 2px;}
 .gi{display:flex;flex-direction:column;align-items:center;gap:9px;background:transparent;border:0;cursor:pointer;}
 .gi .gi-ic{width:62px;height:62px;border-radius:22px;background:var(--qx-cream);display:flex;align-items:center;justify-content:center;color:var(--qx-deep);box-shadow:0 8px 18px rgba(70,90,60,.10);}
 .gi .gi-ic svg{width:29px;height:29px;}
 .gi .gi-tx{font-size:12.5px;color:#6b7a5f;letter-spacing:.5px;}
 
 /* ---------- 双 banner ---------- */
-.banners{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:26px 22px 0;}
-.banner{border-radius:22px;padding:16px 15px;min-height:116px;position:relative;overflow:hidden;border:0;text-align:left;cursor:pointer;}
-.banner.green{background:#e3eddb;}
-.banner.blue{background:#dde9ec;}
-.banner .b-ic{position:absolute;top:14px;right:14px;color:#8fa281;display:flex;}
-.banner.blue .b-ic{color:#84a0a6;}
-.banner .b-ic svg{width:30px;height:30px;}
-.banner .b-t{font-size:17px;font-weight:700;color:var(--qx-ink);margin-top:32px;display:block;letter-spacing:.5px;}
-.banner .b-s{font-size:11.5px;color:#8a987a;margin-top:6px;display:block;letter-spacing:.2px;}
+.qx-banners{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:26px 22px 0;}
+.qx-banner{border-radius:22px;padding:16px 15px;min-height:116px;position:relative;overflow:hidden;border:0;text-align:left;cursor:pointer;}
+.qx-banner.green{background:#e3eddb;}
+.qx-banner.blue{background:#dde9ec;}
+.qx-banner .b-ic{position:absolute;top:14px;right:14px;color:#8fa281;display:flex;}
+.qx-banner.blue .b-ic{color:#84a0a6;}
+.qx-banner .b-ic svg{width:30px;height:30px;}
+.qx-banner .b-t{font-size:17px;font-weight:700;color:var(--qx-ink);margin-top:32px;display:block;letter-spacing:.5px;}
+.qx-banner .b-s{font-size:11.5px;color:#8a987a;margin-top:6px;display:block;letter-spacing:.2px;}
 
 /* ---------- 连接设备大横幅 ---------- */
-.device-banner{margin:20px 22px 0;width:calc(100% - 44px);border-radius:22px;padding:15px 18px;display:flex;align-items:center;gap:13px;color:#f3f7ec;background:linear-gradient(132deg,#435a40 0%,#5d774f 100%);box-shadow:0 14px 26px rgba(67,90,64,.30);border:0;text-align:left;cursor:pointer;}
-.device-banner .db-ic{width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.device-banner .db-ic svg{width:25px;height:25px;}
-.device-banner .db-tx{flex:1;min-width:0;line-height:1.3;}
-.device-banner .db-t{font-size:14.5px;font-weight:700;letter-spacing:.5px;display:block;}
-.device-banner .db-s{font-size:11px;color:#d6e2c9;margin-top:4px;display:block;letter-spacing:.5px;}
-.device-banner .db-go{color:#cfe0bd;flex-shrink:0;display:flex;}
-.device-banner .db-go svg{width:21px;height:21px;}
+.qx-device{margin:20px 22px 0;width:calc(100% - 44px);border-radius:22px;padding:15px 18px;display:flex;align-items:center;gap:13px;color:#f3f7ec;background:linear-gradient(132deg,#435a40 0%,#5d774f 100%);box-shadow:0 14px 26px rgba(67,90,64,.30);border:0;text-align:left;cursor:pointer;}
+.qx-device .db-ic{width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.qx-device .db-ic svg{width:25px;height:25px;}
+.qx-device .db-tx{flex:1;min-width:0;line-height:1.3;}
+.qx-device .db-t{font-size:14.5px;font-weight:700;letter-spacing:.5px;display:block;}
+.qx-device .db-s{font-size:11px;color:#d6e2c9;margin-top:4px;display:block;letter-spacing:.5px;}
+.qx-device .db-go{color:#cfe0bd;flex-shrink:0;display:flex;}
+.qx-device .db-go svg{width:21px;height:21px;}
 
-/* ---------- 课程列表：左 5 分类 + 右封面课卡 ---------- */
-.qx-courses-page{flex:1;display:flex;min-height:0;padding-bottom:62px;}
-.cats{width:88px;flex-shrink:0;background:#eceee3;border-right:1px solid #dde3d2;display:flex;flex-direction:column;overflow-y:auto;}
-.cats .cat{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;color:#8a967c;letter-spacing:1px;padding:0 4px;position:relative;border:0;background:transparent;cursor:pointer;}
-.cats .cat.on{background:#f6f8f0;color:var(--qx-deep);font-weight:600;}
-.cats .cat.on::before{content:"";position:absolute;left:0;top:14%;bottom:14%;width:3.5px;border-radius:0 3px 3px 0;background:var(--qx-green2);}
-.courses{flex:1;min-width:0;background:#f7f8f2;padding:4px 12px 130px;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-.course{display:flex;gap:11px;padding:13px 6px;border:0;border-bottom:1px solid #e6e9dc;background:transparent;width:100%;text-align:left;cursor:pointer;}
-.course:last-child{border-bottom:none;}
-.course .cover{width:64px;height:64px;border-radius:15px;flex-shrink:0;background:linear-gradient(150deg,#cfdfd2,#dce8dd);display:flex;align-items:center;justify-content:center;color:var(--qx-deep);}
-.course .cover svg{width:38px;height:38px;}
-.course .cinfo{min-width:0;display:flex;flex-direction:column;justify-content:center;gap:5px;text-align:left;}
-.course .c-title{font-size:14.5px;font-weight:700;color:var(--qx-ink);line-height:1.35;}
-.course .c-meta{font-size:11.5px;color:#93a083;letter-spacing:.3px;}
-.course .c-desc{font-size:10.5px;color:#a8b397;line-height:1.4;}
+/* ---------- 上滑提示（仅一个向上箭头） ---------- */
+.qx-swipe-hint{display:flex;justify-content:center;padding:20px 0 8px;color:#9aa78a;}
+.qx-swipe-hint svg{width:26px;height:26px;}
+
+/* ---------- 横向大分类（吸顶） ---------- */
+.qx-htabs{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;padding:10px 16px;background:linear-gradient(180deg,#e7edda 0%,#eef1e2 100%);border-bottom:1px solid rgba(190,202,176,.5);}
+.qx-ht{flex-shrink:0;height:40px;padding:0 24px;border-radius:21px;border:0;background:transparent;color:var(--qx-muted);font-size:15px;letter-spacing:1px;cursor:pointer;white-space:nowrap;transition:all .2s ease;}
+.qx-ht.on{background:linear-gradient(132deg,#435a40 0%,#5d774f 100%);color:#fff;font-weight:600;box-shadow:0 6px 14px rgba(67,90,64,.32);}
+
+/* ---------- 面板 ---------- */
+.qx-hpanel{display:none;}
+.qx-hpanel.on{display:block;min-height:calc(100vh - 50px - 61px);}
+
+/* ---------- 冥想：左竖栏 + 右课卡 ---------- */
+/* layout 用渐变提供竖栏底色（视觉占满），自身足够高以容纳 sticky 竖栏 */
+.qx-layout{display:flex;min-height:calc(100vh - 50px);background:linear-gradient(to right,#eceee3 0 78px,#f7f8f2 78px);}
+.qx-side{width:78px;flex-shrink:0;border-right:1px solid #dde3d2;position:sticky;top:var(--qx-htab-h);align-self:flex-start;}
+.qx-st{height:56px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;color:#8a967c;letter-spacing:1px;padding:0 4px;position:relative;border:0;background:transparent;width:100%;cursor:pointer;}
+.qx-st.on{background:#f6f8f0;color:var(--qx-deep);font-weight:600;}
+.qx-st.on::before{content:"";position:absolute;left:0;top:14%;bottom:14%;width:3.5px;border-radius:0 3px 3px 0;background:var(--qx-green2);}
+.qx-lessons{flex:1;min-width:0;background:#f7f8f2;padding:4px 12px 140px;}
+.qx-lc{display:flex;gap:11px;padding:13px 6px;border:0;border-bottom:1px solid #e6e9dc;background:transparent;width:100%;text-align:left;cursor:pointer;}
+.qx-lc:last-child{border-bottom:none;}
+.qx-lc .lc-cover{width:64px;height:64px;border-radius:15px;flex-shrink:0;background:linear-gradient(150deg,#cfdfd2,#dce8dd);display:flex;align-items:center;justify-content:center;color:var(--qx-deep);}
+.qx-lc .lc-cover svg{width:38px;height:38px;}
+.qx-lc .lc-info{min-width:0;display:flex;flex-direction:column;justify-content:center;gap:5px;text-align:left;}
+.qx-lc .lc-title{font-size:14.5px;font-weight:700;color:var(--qx-ink);line-height:1.35;}
+.qx-lc .lc-meta{font-size:11.5px;color:#93a083;letter-spacing:.3px;}
+.qx-lc .lc-desc{font-size:10.5px;color:#a8b397;line-height:1.4;}
 .qx-load{padding:40px 10px;text-align:center;color:#8a987a;font-size:13px;}
 
-/* ---------- 内部子 tab（固定在主 dock 上方） ---------- */
-.qx-subtab{position:fixed;left:0;right:0;bottom:62px;z-index:60;height:52px;display:flex;align-items:center;gap:28px;padding:0 26px;background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,.86));border-top:1px solid rgba(215,223,205,.7);}
-.qx-subtab .st{position:relative;border:0;background:transparent;font-size:15.5px;color:var(--qx-muted2);letter-spacing:2px;height:52px;display:flex;align-items:center;cursor:pointer;}
-.qx-subtab .st.on{color:var(--qx-deep);font-weight:600;}
-.qx-subtab .st.on::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:8px;width:24px;height:3px;border-radius:3px;background:var(--qx-green2);}
+/* ---------- 空状态 ---------- */
+.qx-empty{display:flex;flex-direction:column;align-items:center;padding:90px 30px 140px;text-align:center;}
+.qx-empty .e-ic{width:72px;height:72px;border-radius:22px;background:#e9efe0;display:flex;align-items:center;justify-content:center;color:var(--qx-green2);}
+.qx-empty .e-ic svg{width:34px;height:34px;}
+.qx-empty .e-t{font-size:17px;font-weight:700;color:var(--qx-ink);margin-top:20px;letter-spacing:.5px;}
+.qx-empty .e-s{font-size:13px;color:#9aa78a;margin-top:10px;line-height:1.6;}
 
 /* ---------- 主站 5 Tab 底部导航 ---------- */
 .qx-dock{position:fixed;left:0;right:0;bottom:0;z-index:61;height:62px;background:rgba(255,253,245,.97);border-top:1px solid var(--qx-line);display:flex;align-items:center;padding-bottom:4px;}
@@ -97,9 +111,9 @@
 .qx-dock .di svg{width:23px;height:23px;}
 .qx-dock .di .dt{font-size:10.5px;letter-spacing:.5px;}
 .qx-dock .di.on{color:var(--qx-deep);}
-.qx-dock.hidden,.qx-subtab.hidden{display:none;}
+.qx-dock.hidden{display:none;}
 
-/* ---------- roost 二级页底部留白（避免被 dock 遮） ---------- */
+/* ---------- roost 二级页底部留白 ---------- */
 .view.active .pad{padding-bottom:140px;}
 
 /* ---------- toast ---------- */
@@ -108,13 +122,13 @@
 
 /* ---------- 窄屏 ---------- */
 @media(max-width:600px){
-  .grid10{gap:20px 6px;padding:12px 18px 2px;}
+  .qx-grid{gap:20px 6px;padding:12px 18px 2px;}
   .gi .gi-ic{width:56px;height:56px;border-radius:19px;}
   .gi .gi-ic svg{width:26px;height:26px;}
   .gi .gi-tx{font-size:11.5px;}
-  .banners{gap:12px;padding:22px 18px 0;}
-  .banner{min-height:106px;padding:14px 13px;}
-  .device-banner{margin:18px 18px 0;width:calc(100% - 36px);}
-  .cats{width:80px;}
-  .cats .cat{font-size:13.5px;}
+  .qx-banners{gap:12px;padding:22px 18px 0;}
+  .qx-banner{min-height:106px;padding:14px 13px;}
+  .qx-device{margin:18px 18px 0;width:calc(100% - 36px);}
+  .qx-side{width:72px;}
+  .qx-st{font-size:13.5px;}
 }
