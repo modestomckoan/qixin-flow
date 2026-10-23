@@ -461,6 +461,15 @@ padding:45px 0;
 letter-spacing:1px
 }
 
+.player-phrase.ph-fade {
+animation:phFade .9s ease both
+}
+
+@keyframes phFade {
+from { opacity:0; transform:translateY(10px) }
+to { opacity:1; transform:translateY(0) }
+}
+
 .player-read {
 align-self:start;
 border:1px solid #fff5;
