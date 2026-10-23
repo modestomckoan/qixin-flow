@@ -1,0 +1,1 @@
+var x='<div class="lc">';
