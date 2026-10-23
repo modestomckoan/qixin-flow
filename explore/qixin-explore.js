@@ -34,11 +34,11 @@
 
   /* ---------- 主站 5 Tab（跨页跳回主站） ---------- */
   const DOCK = [
-    { key:'home', label:'冥想', icon:I.home, go:'home' },
+    { key:'home', label:'冥想', icon:I.home, href:MAIN+'#home' },
     { key:'explore', label:'探索', icon:I.book, current:true },
-    { key:'community', label:'同频', icon:I.people, go:'community' },
-    { key:'affirm', label:'心语', icon:I.star, go:'affirm' },
-    { key:'me', label:'我的', icon:I.user, go:'me' }
+    { key:'community', label:'同频', icon:I.people, href:MAIN+'#community' },
+    { key:'affirm', label:'心语', icon:I.star, href:MAIN+'#affirm' },
+    { key:'me', label:'我的', icon:I.user, href:MAIN+'#me' }
   ];
 
   /* ---------- 横向 4 大分类 ---------- */
@@ -89,7 +89,7 @@
     { label:'呼吸', icon:I.breath, act:'breath' },
     { label:'连耳机', icon:I.ear, act:'go:device' },
     { label:'白噪音', icon:I.wave, act:'go:sounds' },
-    { label:'社区', icon:I.people, act:'tab:community' },
+    { label:'社区', icon:I.people, act:'main:community' },
     { label:'日记', icon:I.pen, act:'toast' },
     { label:'课程', icon:I.calendar, act:'course' },
     { label:'档案', icon:I.box, act:'toast' }
@@ -171,9 +171,10 @@
     if(document.getElementById('qx-dock')) return;
     const dock = document.createElement('nav');
     dock.id='qx-dock'; dock.className='qx-dock';
-    dock.innerHTML = DOCK.map(d=>
-      '<button class="di'+(d.current?' on':'')+'" data-dock-go="'+(d.go||'explore')+'"'+(d.current?' aria-current="page"':'')+'><span class="di-ic">'+svg(d.icon)+'</span><span class="dt">'+d.label+'</span></button>'
-    ).join('');
+    dock.innerHTML = DOCK.map(d=>{
+      if(d.current) return '<button class="di on" aria-current="page"><span class="di-ic">'+svg(d.icon)+'</span><span class="dt">'+d.label+'</span></button>';
+      return '<button class="di" data-href="'+d.href+'"><span class="di-ic">'+svg(d.icon)+'</span><span class="dt">'+d.label+'</span></button>';
+    }).join('');
     document.body.appendChild(dock);
   }
 
@@ -199,34 +200,27 @@
     if(el) el.innerHTML=lessonListHtml(key);
   }
 
-  /* ---------- 劫持 go()：全部页内切换，无跨文档跳转 ---------- */
+  /* ---------- 劫持 go()：旁路 roost 首页/课程，统一到连续页 ---------- */
   const p0 = go;
-  const MAIN_TABS = ['home','explore','community','affirm','me'];
-  function setDockActive(key){
-    document.querySelectorAll('#qx-dock .di').forEach(b=>
-      b.classList.toggle('on', b.dataset.dockGo===key));
-  }
   go = function(name){
     const dock = document.getElementById('qx-dock');
     if(dock) dock.classList.toggle('hidden', name==='session');
-    if(name==='explore'){
-      p0('explore'); setDockActive('explore'); return;
+    if(name==='home' || name==='explore'){
+      p0('explore');
+      return;
     }
     if(name==='courses'){
-      p0('explore'); setDockActive('explore');
-      selectHtab('meditate', true); return;
+      p0('explore');
+      selectHtab('meditate', true);
+      return;
     }
     p0(name);
-    if(MAIN_TABS.includes(name)) setDockActive(name);
-    if(name==='affirm') renderAffirm();
-    if(name==='me') renderMe();
-    if(name==='community') renderCommunity();
   };
 
   /* ---------- 点击代理 ---------- */
   document.addEventListener('click', function(e){
-    const dockGoBtn = e.target.closest('#qx-dock [data-dock-go]');
-    if(dockGoBtn){ go(dockGoBtn.dataset.dockGo); return; }
+    const hrefBtn = e.target.closest('#qx-dock [data-href]');
+    if(hrefBtn){ goMain(hrefBtn.dataset.href); return; }
     const mainBtn = e.target.closest('[data-main]');
     if(mainBtn){ goMain(mainBtn.dataset.main); return; }
     const shareBtn = e.target.closest('[data-share]');
@@ -260,161 +254,10 @@
       else if(a.act==='breath'){ selectHtab('meditate',true); selectStab('breath'); }
       else if(a.act==='course'){ selectHtab('course',true); }
       else if(a.act.indexOf('go:')===0){ p0(a.act.slice(3)); }
-      else if(a.act.indexOf('tab:')===0){ go(a.act.slice(4)); }
+      else if(a.act.indexOf('main:')===0){ goMain(MAIN+'#'+a.act.slice(5)); }
       return;
     }
   });
-
-  /* ============================================================
-     额外页：心语 / 我的 / 同频（同一文档内 view，无跳转）
-     ============================================================ */
-  let afIdx = 0;
-  try { afIdx = (typeof dayOfYear==='function') ? dayOfYear() : 0; } catch(e){ afIdx=0; }
-
-  function extraViewsHtml(){
-    const affirm =
-      '<section class="view" id="view-affirm"><div class="pad">' +
-        '<div class="brand">栖心 Flow · 每日心语</div>' +
-        '<h1 class="page-title serif">收下一句温柔的话</h1>' +
-        '<p class="intro">每天一句，像呼吸一样轻轻提醒。</p>' +
-        '<div class="af-card"><span class="af-qm">“</span>' +
-          '<blockquote class="af-text" id="afText"></blockquote>' +
-          '<div class="af-date" id="afDate"></div></div>' +
-        '<div class="af-actions">' +
-          '<button class="af-ghost" id="afPrev">上一句</button>' +
-          '<button class="cta" id="afCopy">复制这句</button>' +
-          '<button class="af-ghost" id="afNext">下一句</button>' +
-        '</div>' +
-      '</div></section>';
-
-    const me =
-      '<section class="view" id="view-me"><div class="pad">' +
-        '<div class="brand">栖心 Flow · 我的</div>' +
-        '<h1 class="page-title serif">你的练习，都被温柔记得</h1>' +
-        '<div class="me-stats">' +
-          '<div class="me-stat"><b id="meStatDone">0</b><span>已完成 / 天</span></div>' +
-          '<div class="me-stat"><b id="meStatStreak">0</b><span>连续天数</span></div>' +
-          '<div class="me-stat"><b id="meStatMin">0</b><span>累计分钟</span></div>' +
-        '</div>' +
-        '<div class="me-list">' +
-          '<button class="me-item" id="meArchive">舒适档案<span class="me-arrow">›</span></button>' +
-          '<button class="me-item" id="meProgram">全部课程<span class="me-arrow">›</span></button>' +
-          '<button class="me-item" id="meDevice">设备与耳机<span class="me-arrow">›</span></button>' +
-          '<button class="me-item danger" id="meClear">清除本机记录<span class="me-arrow">›</span></button>' +
-        '</div>' +
-        '<p class="me-note">记录仅保存在本机浏览器，不会跨设备同步。</p>' +
-      '</div></section>';
-
-    const community =
-      '<section class="view" id="view-community"><div class="pad">' +
-        '<div class="brand">栖心 Flow · 同频</div>' +
-        '<h1 class="page-title serif">和同频的人，一起安静</h1>' +
-        '<div class="cm-now">' +
-          '<span class="cm-pulse"><span></span></span>' +
-          '<div class="cm-now-tx"><b id="cmCount">—</b><p>人正在此刻，与你一起呼吸</p></div>' +
-        '</div>' +
-        '<button class="cta cm-join" id="cmJoin">加入此刻共修</button>' +
-        '<div class="cm-section">同频动态</div>' +
-        '<div class="cm-feed" id="cmFeed"></div>' +
-        '<p class="cm-note">完整社区正在精心搭建，敬请期待。</p>' +
-      '</div></section>';
-
-    return affirm + me + community;
-  }
-
-  function addExtraViews(){
-    if(document.getElementById('view-affirm')) return;
-    const wrap=document.createElement('div');
-    wrap.innerHTML=extraViewsHtml();
-    const tabbar=document.getElementById('tabbar');
-    while(wrap.firstChild){
-      const node=wrap.firstChild;
-      if(tabbar && tabbar.parentNode) tabbar.parentNode.insertBefore(node,tabbar);
-      else document.body.appendChild(node);
-    }
-    bindExtra();
-  }
-
-  function getDAILY(){ try { return (typeof DAILY!=='undefined' && DAILY.length) ? DAILY : []; } catch(e){ return []; } }
-
-  function renderAffirm(){
-    const arr=getDAILY(), el=document.getElementById('afText');
-    if(!el) return;
-    if(!arr.length){ el.textContent='心语正在准备中'; return; }
-    afIdx=((afIdx%arr.length)+arr.length)%arr.length;
-    el.textContent=arr[afIdx];
-    const d=new Date();
-    document.getElementById('afDate').textContent=(d.getMonth()+1)+'月'+d.getDate()+'日 · 第'+(afIdx+1)+'句';
-  }
-
-  function calcStreak(){
-    let s=0,cursor=new Date();
-    for(let i=0;i<365;i++){
-      const key=cursor.toDateString();
-      const has=Object.values(state.done||{}).some(ts=>new Date(ts).toDateString()===key);
-      if(has) s++; else if(i>0) break;
-      cursor.setDate(cursor.getDate()-1);
-    }
-    return s;
-  }
-
-  function renderMe(){
-    const el=document.getElementById('meStatDone'); if(!el) return;
-    const done=Object.keys(state.done||{});
-    el.textContent=done.length;
-    document.getElementById('meStatStreak').textContent=calcStreak();
-    const P=getProgram()||[];
-    document.getElementById('meStatMin').textContent=
-      done.reduce((sum,dd)=>sum+(P[dd-1]?P[dd-1].dur:0),0);
-  }
-
-  function renderCommunity(){
-    const d=new Date();
-    const seed=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
-    const n=120+(seed%480);
-    const c=document.getElementById('cmCount'); if(!c) return;
-    c.textContent=n;
-    const feed=[
-      '有人刚刚完成了「一口气的来去」',
-      '一位同学正在练习「用双手感受当下」',
-      '今晚有许多人选择了「睡前安住」',
-      '有人在声音花园里留住了雨声'
-    ];
-    document.getElementById('cmFeed').innerHTML=feed.map(t=>
-      '<div class="cm-feed-item"><span class="cm-dot"></span><span>'+t+'</span></div>').join('');
-  }
-
-  function bindExtra(){
-    document.getElementById('afPrev').onclick=function(){ afIdx--; renderAffirm(); };
-    document.getElementById('afNext').onclick=function(){ afIdx++; renderAffirm(); };
-    document.getElementById('afCopy').onclick=function(){
-      const arr=getDAILY();
-      const t=arr.length?arr[((afIdx%arr.length)+arr.length)%arr.length]:'';
-      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(()=>toast('已复制这一句')).catch(()=>toast(t)); }
-      else toast(t);
-    };
-    document.getElementById('meArchive').onclick=function(){ go('archive'); };
-    document.getElementById('meProgram').onclick=function(){ go('program'); };
-    document.getElementById('meDevice').onclick=function(){ go('device'); };
-    document.getElementById('meClear').onclick=function(){
-      if(confirm('确定清除本机全部练习记录？此操作无法恢复。')){
-        try{
-          state.done={}; state.anchors=[]; state.scores={};
-          ['calm_done','calm_anchors','calm_scores','roost_logs'].forEach(k=>localStorage.removeItem(k));
-          save();
-        }catch(e){}
-        renderMe(); toast('本机记录已清除');
-      }
-    };
-    document.getElementById('cmJoin').onclick=function(){
-      try{
-        const P=getProgram();
-        let day=1;
-        if(P){ for(let i=0;i<P.length;i++){ if(!state.done[P[i].day]){ day=P[i].day; break; } } }
-        startSession(day);
-      }catch(e){ toast('共修即将开始'); }
-    };
-  }
 
   /* ---------- 插入连续页视图 ---------- */
   function insertView(){
@@ -427,7 +270,7 @@
     else document.body.appendChild(sec);
   }
 
-  /* ---------- 构建界面骨架（不切换视图） ---------- */
+  /* ---------- 启动：跳过问卷，立即进连续页 ---------- */
   function showNow(){
     try{
       const onb=document.getElementById('view-onb');
@@ -435,8 +278,8 @@
       localStorage.setItem('calm_onboarded','1');
     }catch(e){}
     buildChrome();
-    addExtraViews();
     insertView();
+    go('explore');
   }
 
   /* 课程数据就绪后刷新课卡 */
@@ -460,12 +303,7 @@
 
   function boot(){
     showNow();
-    // 先加载 30 天课程数据，就绪后再进「冥想」首页，避免空数据渲染报错
-    loadProgram().then(function(){
-      go('home');
-    }).catch(function(){
-      go('home');
-    });
+    setTimeout(function(){ loadProgram(); }, 500);
   }
 
   /* ---------- 移除 roost 悬浮球 ---------- */
