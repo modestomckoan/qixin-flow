@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -216,7 +216,7 @@
     font-family:'Noto Serif SC',serif;font-size:34px;color:var(--sage-deep);
   }
   .rec-day{font-family:'Noto Serif SC',serif;font-size:27px;font-weight:600;text-align:center;line-height:1.4;margin-bottom:12px;}
-  .rec-reason{font-size:13px;color:var(--ink-dim);line-height:2;text-align:center;margin-bottom:14px;white-space:pre-line;}
+  .rec-reason{font-size:13px;color:var(--ink-dim);line-height:2;text-align:center;margin-bottom:14px;}
   .rec-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:30px;}
 
   /* ============================================================
@@ -618,43 +618,7 @@
       <canvas id="eegCanvas"></canvas>
     </div>
 
-    <div class="scan-wrap">
-      <div class="scan-figure">
-        <svg viewBox="0 0 70 100">
-          <g class="figure-line">
-            <circle cx="35" cy="13" r="8.5"/>
-            <line x1="35" y1="21.5" x2="35" y2="62"/>
-            <path d="M23 31 Q35 26.5 47 31"/>
-            <path d="M24 33 Q19 50 28.5 63"/>
-            <path d="M46 33 Q51 50 41.5 63"/>
-            <path d="M11 80 Q35 64 59 80 Q55 90 35 90 Q15 90 11 80 Z"/>
-            <path d="M23 80 Q35 74 47 80"/>
-          </g>
-          <circle class="scan-dot" data-route="head" cx="35" cy="5" r="3.4"/>
-          <circle class="scan-dot" data-route="face" cx="35" cy="13" r="3.4"/>
-          <circle class="scan-dot" data-route="neck" cx="35" cy="23" r="3.4"/>
-          <circle class="scan-dot" data-route="shoulder" cx="35" cy="31" r="3.4"/>
-          <circle class="scan-dot" data-route="chest" cx="35" cy="39" r="3.4"/>
-          <circle class="scan-dot" data-route="heart" cx="35" cy="45" r="3.4"/>
-          <circle class="scan-dot" data-route="belly" cx="35" cy="53" r="3.4"/>
-          <circle class="scan-dot" data-route="hand" cx="35" cy="63" r="3.4"/>
-          <circle class="scan-dot" data-route="hip" cx="35" cy="72" r="3.4"/>
-          <circle class="scan-dot" data-route="foot" cx="35" cy="83" r="3.4"/>
-        </svg>
-      </div>
-      <div class="scan-info">
-        <div class="scan-kicker">BODY SCAN · 身体扫描</div>
-        <div class="scan-part" id="currentPart">准备<small id="scanCount"></small></div>
-        <div class="scan-track" id="scanTrack">
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        </div>
-      </div>
-    </div>
-
-    <progress id="courseProgress" value="0" max="100" aria-label="课程进度"></progress><div class="script-box">
-      <div class="script-text serif" id="scriptText">点击开始</div>
-      <div class="script-hint" id="scriptHint">引导语将自动朗读</div>
-    </div>
+    <progress id="courseProgress" value="0" max="100" aria-label="课程进度"></progress>
 
     <div class="session-settings"><div class="setting"><label for="voiceSelect">引导声音</label><select id="voiceSelect"></select><button class="text-btn" onclick="previewVoice()">试听</button></div><div class="setting"><label for="voiceVol">人声音量</label><input id="voiceVol" type="range" min="0" max="1" step="0.05" value="0.85"></div><div class="setting"><label for="ambientVol">音景音量</label><input id="ambientVol" type="range" min="0" max="1" step="0.05" value="0.35"></div><div class="setting"><label for="sceneSelect">背景音景</label><select id="sceneSelect"></select></div><div class="setting"><label><input type="checkbox" id="naturalBreath"> 自然呼吸（不跟拍）</label><label><input type="checkbox" id="closedLoop"> 模拟闭环音量调节</label></div><p id="voiceStatus" role="status">语音准备中</p><p id="loopStatus">未连接脑电设备 · 当前数据仅用于演示，不计入个人效果。</p></div><div class="controls">
       <button class="ctrl-btn primary" id="playBtn" onclick="togglePlay()">开始</button>
@@ -1168,11 +1132,13 @@ function countdown(sec,el){
 function resetScan(){
   document.querySelectorAll('.scan-dot').forEach(d=>d.classList.remove('active','visited'));
   document.querySelectorAll('#scanTrack i').forEach(i=>i.classList.remove('on'));
-  document.getElementById('currentPart').innerHTML='准备<small></small>';
+  const cp=document.getElementById('currentPart');
+  if(cp) cp.innerHTML='准备<small></small>';
 }
 function highlightBody(part){
   document.querySelectorAll('.scan-dot').forEach(d=>d.classList.remove('active'));
   const nameEl=document.getElementById('currentPart');
+  if(!nameEl) return;
   if(!part){nameEl.innerHTML='全身<small></small>';return;}
   const route=PART_TO_ROUTE[part]||part;
   const idx=SCAN_ROUTE.indexOf(route);
