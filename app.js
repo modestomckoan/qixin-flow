@@ -127,8 +127,10 @@ function ttsBuffer(text){
       // 1) 本机持久化缓存命中（刷新/重开后仍在）：直接解码本地录音，不再花钱
       const saved=await idbGet(text);
       if(saved)return decode(saved);
-      // 2) 未命中：请求语音合成（只有这一步才花钱）
-      const ab=await fetch(API_BASE+'/api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})}).then(r=>{if(!r.ok)throw Error('tts '+r.status);return r.arrayBuffer();});
+      // 2) 未命中：请求语音合成（只有这一步才花钱）。带 12 秒超时，连不上就快速失败走兜底
+      const ttsCtrl=new AbortController();
+      const ttsTimer=setTimeout(()=>ttsCtrl.abort(),12000);
+      const ab=await fetch(API_BASE+'/api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text}),signal:ttsCtrl.signal}).then(r=>{if(!r.ok)throw Error('tts '+r.status);return r.arrayBuffer();}).finally(()=>clearTimeout(ttsTimer));
       // 复制一份存本机（decodeAudioData 会消费原始 buffer，故先复制）
       idbPut(text,ab.slice(0)).catch(()=>{});
       return decode(ab);
