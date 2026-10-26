@@ -88,11 +88,55 @@ function ambient(){try{if(!audioContext){audioContext=new(window.AudioContext||w
 const AUDIO_BASE='assets/audio/';
 const AUDIO_SRC={rest:['intro','rest-1','rest-2','rest-3','rest-4','rest-5','outro'],sleep:['intro','sleep-1','sleep-2','sleep-3','sleep-4','sleep-5','outro'],kind:['intro','kind-1','kind-2','kind-3','kind-4','kind-5','outro'],focus:['intro','focus-1','focus-2','focus-3','focus-4','outro'],morning:['intro','morning-1','morning-2','morning-3','morning-4','morning-5','outro'],night:['intro','night-1','night-2','night-3','night-4','night-5','outro']};
 function stopVoiceAudio(){voiceToken++;if(voiceSource){try{voiceSource.onended=null;voiceSource.stop();}catch(e){}try{voiceSource.disconnect();}catch(e){}voiceSource=null;}}
+/* ===== IndexedDB 人声持久化缓存 =====
+   把合成好的人声存到本机，刷新页面或重开 App 后，同一段引导词直接读本地、
+   不再请求语音合成、不重复花钱。环境不支持时自动退回纯内存/在线模式。 */
+const TTS_DB='qixin-tts-cache', TTS_STORE='clips';
+let ttsDBPromise=null;
+function ttsDB(){
+  if(!ttsDBPromise){
+    ttsDBPromise=new Promise(resolve=>{
+      if(!('indexedDB' in window)){resolve(null);return;}
+      const req=indexedDB.open(TTS_DB,1);
+      req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(TTS_STORE))db.createObjectStore(TTS_STORE);};
+      req.onsuccess=()=>resolve(req.result);
+      req.onerror=()=>resolve(null);
+    });
+  }
+  return ttsDBPromise;
+}
+function idbGet(key){return ttsDB().then(db=>new Promise(resolve=>{
+  if(!db){resolve(null);return;}
+  const rq=db.transaction(TTS_STORE,'readonly').objectStore(TTS_STORE).get(key);
+  rq.onsuccess=()=>resolve(rq.result||null);rq.onerror=()=>resolve(null);
+}));}
+function idbPut(key,val){return ttsDB().then(db=>new Promise(resolve=>{
+  if(!db){resolve();return;}
+  const tx=db.transaction(TTS_STORE,'readwrite');
+  tx.objectStore(TTS_STORE).put(val,key);
+  tx.oncomplete=()=>resolve();tx.onerror=()=>resolve();
+}));}
 const ttsCache=new Map();
 const clipCache=new Map();
 function isAiPractice(p){return !!(p&&(p.source==='ai'||(typeof p.id==='string'&&p.id.startsWith('ai-'))));}
 function decodeAudio(url){ensureAudio();return fetch(url).then(r=>{if(!r.ok)throw Error('audio '+r.status);return r.arrayBuffer();}).then(ab=>new Promise((res,rej)=>{try{audioContext.decodeAudioData(ab,res,rej);}catch(e){rej(e);}}));}
-function ttsBuffer(text){if(!ttsCache.has(text)){const p=fetch(API_BASE+'/api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})}).then(r=>{if(!r.ok)throw Error('tts '+r.status);return r.arrayBuffer();}).then(ab=>{ensureAudio();return new Promise((res,rej)=>{try{audioContext.decodeAudioData(ab,res,rej);}catch(e){rej(e);}});}).catch(e=>{ttsCache.delete(text);throw e;});ttsCache.set(text,p);}return ttsCache.get(text);}
+function ttsBuffer(text){
+  if(!ttsCache.has(text)){
+    const p=(async()=>{
+      const decode=ab=>new Promise((res,rej)=>{try{ensureAudio();audioContext.decodeAudioData(ab,res,rej);}catch(e){rej(e);}});
+      // 1) 本机持久化缓存命中（刷新/重开后仍在）：直接解码本地录音，不再花钱
+      const saved=await idbGet(text);
+      if(saved)return decode(saved);
+      // 2) 未命中：请求语音合成（只有这一步才花钱）
+      const ab=await fetch(API_BASE+'/api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})}).then(r=>{if(!r.ok)throw Error('tts '+r.status);return r.arrayBuffer();});
+      // 复制一份存本机（decodeAudioData 会消费原始 buffer，故先复制）
+      idbPut(text,ab.slice(0)).catch(()=>{});
+      return decode(ab);
+    })().catch(e=>{ttsCache.delete(text);throw e;});
+    ttsCache.set(text,p);
+  }
+  return ttsCache.get(text);
+}
 function clipBuffer(clip){const url=AUDIO_BASE+clip+'.mp3';if(!clipCache.has(clip))clipCache.set(clip,decodeAudio(url));return clipCache.get(clip);}
 function preloadTTS(p){if(isAiPractice(p)&&p.paragraphs&&p.paragraphs[0])ttsBuffer(p.paragraphs[0]);}
 function deviceSpeak(i,rate,volume){if(!('speechSynthesis'in window))return;stopVoiceAudio();window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(current.paragraphs[i]);u.lang='zh-CN';u.rate=rate||.8;if(volume!=null)u.volume=volume;const voices=window.speechSynthesis.getVoices();const v=voices.find(v=>v.voiceURI===voiceChoice)||voices.find(v=>v.lang.startsWith('zh'));if(v)u.voice=v;u.onerror=e=>{if(!['canceled','interrupted'].includes(e.error))toast('设备语音暂不可用，可跟随屏幕阅读练习')};window.speechSynthesis.speak(u);}
