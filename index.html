@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e6eadb"><title>栖心 Flow · 你的专属冥想</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ctext y='32' font-size='32'%3E🌿%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="css/core-1.css">
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e6eadb"><title>栖心 Flow · 你的专属冥想</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 34V20' stroke='%23486955' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M20 20C14 18 10 13 10 8c6 0 10 4 10 10z' fill='%23486955'/%3E%3Cpath d='M20 20c6-2 10-7 10-12-6 0-10 4-10 12z' fill='%23738564'/%3E%3C/svg%3E"><link rel="stylesheet" href="css/core-1.css">
 <link rel="stylesheet" href="css/core-2.css">
 <link rel="stylesheet" href="css/core-3.css">
 <link rel="stylesheet" href="css/splash.css">
@@ -57,8 +57,8 @@
   </div>
 
   <a class="exp-device" href="explore/#view-device">
-    <div class="exp-device-t">连接脑机接口</div>
-    <div class="exp-device-s">耳机待接入 · 模拟脑电闭环演示</div>
+    <div class="exp-device-t">脑电放松 · 模拟演示</div>
+    <div class="exp-device-s">非真实脑电设备 · 引导式放松体验</div>
     <svg class="exp-device-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12c2-4 4-4 6 0s4 4 6 0 4-4 4-4"/><circle cx="4" cy="12" r="1.5"/><circle cx="20" cy="12" r="1.5"/></svg>
   </a>
 </div></section></main><footer class="footer"><span>栖心 FLOW · 让内心，有处可栖。</span><span>原创正念陪伴 · 不替代专业诊疗　<button id="privacy">隐私与生成说明</button></span></footer></div>
@@ -70,12 +70,8 @@
 <script src="card-images.js"></script>
 <script src="visuals.js"></script>
 <script src="community.js"></script><script>
-/* 底部「探索」进入独立资源库页；其余 tab 为站内切换 */
+/* 支持用 #home / #community / #affirm / #me 直达对应 tab */
 (function(){
-  document.querySelectorAll('.dock [data-explore]').forEach(function(b){
-    b.addEventListener('click',function(){ window.location.href=b.getAttribute('data-explore'); });
-  });
-  /* 支持从探索页用 #home / #community / #affirm / #me 直达对应 tab */
   var h=(location.hash||'').replace('#','');
   if(h && document.getElementById('view-'+h) && typeof go==='function'){
     setTimeout(function(){ try{ go(h); }catch(e){} },80);
